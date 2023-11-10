@@ -1,6 +1,3 @@
-import Image from 'next/image';
-import { PromoBlock } from '@/components/PromoBlock';
-import Link from 'next/link';
 import { HomePromos } from '@/components/HomePromos';
 
 export default function Home() {

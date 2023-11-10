@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function RootLayout({children}: { children: React.ReactNode }) {
     return (
         <html lang="en">
-        <body className={inter.className}>
+        <body className={`${inter.className} overflow-y-scroll`}>
             <div className="w-full h-1 bg-gradient-to-r from-cyan-500 to-blue-500"></div>
             <Navigation headingElement={HeadingElement} routes={routes}/>
             <main className="pt-5">
