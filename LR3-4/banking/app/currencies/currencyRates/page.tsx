@@ -1,8 +1,9 @@
 import supabase from '@/core/database/database';
+import { DBResponse, CurrencyBuySell } from '@/core/types';
 
 
 export default async function CurrencyRates(): Promise<JSX.Element> {
-    const {data} = await supabase.from('CurrencyBuySell').select('bank_buys, bank_sells, currency:Currencies (code:short_code_title)');
+    const { data } = (await supabase.from('CurrencyBuySell').select('bank_buys, bank_sells, currency:Currencies (code:short_code_title)')) as DBResponse<CurrencyBuySell[]>;
 
     return (
         <div className="max-w-[500px] m-auto">

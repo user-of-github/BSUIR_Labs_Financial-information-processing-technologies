@@ -1,7 +1,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { Route } from '@/core/types';
-import React from 'react';
+
 
 export const HeadingElement = (
     <Link href="/home" className="flex items-center">
