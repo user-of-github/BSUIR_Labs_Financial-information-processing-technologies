@@ -17,16 +17,16 @@ export const CurrencyConverterForm = ({ conversionRatios, className }: CurrencyC
 
   React.useEffect(() => {
     const ratio = conversionRatios.get(currencyFrom)?.get(currencyTo) || 0;
-    setCurrencyToValue(currencyFromValue * ratio)
+    setCurrencyToValue(currencyFromValue * ratio);
   }, [currencyFrom, currencyTo, currencyToValue, currencyFromValue]);
 
   return (
-    <div className={clsx('flex flex-row w-auto max-md:flex-col pt-5 justify-center gap-5', className)}>
+    <div className={clsx('flex w-auto flex-row justify-center gap-5 pt-5 max-md:flex-col', className)}>
       <CurrencySelectionBlock
         title="From"
         currenciesList={currenciesNames}
         onCurrencyNameChange={setCurrencyFrom}
-        onCurrencyValueChange={value => !Number.isNaN(value) && value >= 0 && setCurrencyFromValue(value)}
+        onCurrencyValueChange={(value) => !Number.isNaN(value) && value >= 0 && setCurrencyFromValue(value)}
         selected={currencyFrom}
         enteredValue={currencyFromValue}
       />
@@ -63,16 +63,16 @@ const CurrencySelectionBlock = ({
   disabled
 }: CurrencySelectionBlockProps): JSX.Element => {
   return (
-    <section className="flex w-auto flex-col p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <h2 className="text-3xl font-bold dark:text-white pb-5">{title}</h2>
-      <div className="flex flex-row items-center gap-x-3 border-t-neutral-200 pt-5 border-t">
+    <section className="flex w-auto flex-col rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800">
+      <h2 className="pb-5 text-3xl font-bold dark:text-white">{title}</h2>
+      <div className="flex flex-row items-center gap-x-3 border-t border-t-neutral-200 pt-5">
         <div className="flex flex-col">
           <label htmlFor="years" className="mb-1 block text-sm font-medium text-gray-900 dark:text-white">
             Select an option
           </label>
           <select
             size={3}
-            className="focus:outline-blue-500 overflow-hidden block w-full rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
+            className="block w-full overflow-hidden rounded-lg border border-gray-300 bg-gray-50 p-2.5 text-sm text-gray-900 focus:border-blue-500 focus:outline-blue-500 focus:ring-blue-500 dark:border-gray-600 dark:bg-gray-700 dark:text-white dark:placeholder-gray-400 dark:focus:border-blue-500 dark:focus:ring-blue-500"
             onChange={(event) => onCurrencyNameChange(event.currentTarget.value)}
           >
             {currenciesList.map((currencyName) => (
@@ -82,13 +82,7 @@ const CurrencySelectionBlock = ({
             ))}
           </select>
         </div>
-        <LabeledInput
-          label="Value"
-          type="number"
-          value={enteredValue}
-          disabled={disabled}
-          onChange={onCurrencyValueChange}
-        />
+        <LabeledInput label="Value" type="number" value={enteredValue} disabled={disabled} onChange={onCurrencyValueChange} />
       </div>
     </section>
   );

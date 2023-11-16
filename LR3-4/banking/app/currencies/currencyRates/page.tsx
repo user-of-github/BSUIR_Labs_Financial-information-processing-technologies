@@ -9,9 +9,7 @@ export default async function CurrencyRates(): Promise<JSX.Element> {
   return (
     <>
       <h1 className="mb-4 text-2xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl">
-        <span className="text-transparent bg-clip-text bg-gradient-to-r to-emerald-600 from-sky-400">
-          Currency Rates
-        </span>
+        <span className="bg-gradient-to-r from-sky-400 to-emerald-600 bg-clip-text text-transparent">Currency Rates</span>
       </h1>
 
       <div className="max-w-[500px]">
@@ -51,6 +49,5 @@ export default async function CurrencyRates(): Promise<JSX.Element> {
         </table>
       </div>
     </>
-
   );
 }
