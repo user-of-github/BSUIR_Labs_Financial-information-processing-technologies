@@ -4,23 +4,21 @@ import { Navigation } from '@/components/Navigation';
 import { HeadingElement, routes } from '@/app/constants';
 import './globals.css';
 
-const inter = Inter({subsets: ['cyrillic', 'latin']});
+const inter = Inter({ subsets: ['cyrillic', 'latin'] });
 
 export const metadata: Metadata = {
-    title: 'Web Banking',
-    description: 'Directed by Slutski Mikita'
+  title: 'Web Banking',
+  description: 'Directed by Slutski Mikita'
 };
 
-export default function RootLayout({children}: { children: React.ReactNode }) {
-    return (
-        <html lang="en">
-        <body className={`${inter.className} overflow-y-scroll`}>
-            <div className="w-full h-2 bg-gradient-to-r from-cyan-500 to-blue-500"></div>
-            <Navigation headingElement={HeadingElement} routes={routes}/>
-            <main className="flex flex-col w-full container m-auto mt-2 py-5 sm:px-6 max-sm:px-2">
-                {children}
-            </main>
-        </body>
-        </html>
-    );
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en">
+      <body className={`${inter.className} overflow-y-scroll`}>
+        <div className="h-2 w-full bg-gradient-to-r from-cyan-500 to-blue-500"></div>
+        <Navigation headingElement={HeadingElement} routes={routes} />
+        <main className="container m-auto mt-2 flex w-full flex-col py-5 max-sm:px-2 sm:px-6">{children}</main>
+      </body>
+    </html>
+  );
 }
