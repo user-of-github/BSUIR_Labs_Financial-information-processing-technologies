@@ -1,6 +1,6 @@
 'use client';
 import React from 'react';
-import { LabeledInput } from '@/components/UI/Input';
+import { LabeledInput } from '@/components/UI/LabeledInput';
 import clsx from 'clsx';
 
 interface CurrencyConverterFormProps {
