@@ -1,10 +1,23 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+'use client'
+import { createClientComponentClient, createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
-import { redirect } from 'next/navigation';
+import { useRouter } from 'next/navigation';
+import React from 'react';
+import { InfoBadge } from '@/components/UI/StateBadge';
+import { LoadingSpinner } from '@/components/UI/LoadingSpinner';
 
-export default async function SignOutPage() {
-  const supabase = createServerComponentClient({ cookies });
-  await supabase.auth.signOut();
+export default function SignOutPage() {
+  const supabase = createClientComponentClient();
+  const router = useRouter();
+  const signOut = async () => {
+    await supabase.auth.signOut();
+    router.refresh();
+    router.push('/');
+  };
 
-  return (<>/</>)
+  React.useEffect(() => void signOut(), [])
+
+  return (
+    <InfoBadge title="Logging out..." text={<LoadingSpinner/>} />
+  )
 }

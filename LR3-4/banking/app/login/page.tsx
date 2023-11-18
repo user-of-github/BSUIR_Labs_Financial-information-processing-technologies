@@ -7,6 +7,8 @@ import { LabeledInput } from '@/components/UI/LabeledInput';
 import { Button } from '@/components/UI/Button';
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
+import { ErrorBadge } from '@/components/UI/StateBadge';
+import { LoadingSpinner } from '@/components/UI/LoadingSpinner';
 
 export default function SignUpPage(): JSX.Element {
   const supabase = createClientComponentClient();
@@ -14,8 +16,12 @@ export default function SignUpPage(): JSX.Element {
   const router = useRouter();
   const [email, setEmail] = React.useState<string>('');
   const [password, setPassword] = React.useState<string>('');
+  const [error, setError] = React.useState<string | undefined>(undefined);
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    setError(undefined);
+    setLoading(true);
     event.preventDefault();
 
     const { data, error } = await supabase.auth.signInWithPassword({
@@ -23,13 +29,16 @@ export default function SignUpPage(): JSX.Element {
       password: password
     });
 
+    setLoading(false);
+
     if (error) {
-      console.log(error)
-      window.alert('Failed to log in');
+      console.log(error);
+      setError(error.message);
     }
 
     if (data.user) {
       router.push('/');
+      router.refresh();
     }
   };
 
@@ -37,12 +46,17 @@ export default function SignUpPage(): JSX.Element {
     <>
       <ColoredHeading headingLevel={1} coloredText="Log in" ordinaryText=" form" />
       <form
-        className="mr-auto flex w-auto min-w-[50%] flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 max-md:w-full"
+        className="relative mr-auto flex w-3/5 max-md:w-full flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800"
         onSubmit={handleSubmit}
+        autoComplete="on"
       >
+        {error && <ErrorBadge title="Error" text={error} className="absolute -top-[20px] -right-1.5" /> }
         <LabeledInput label="Email" value={email} type="email" onChange={setEmail} placeholder="example@email.com" />
         <LabeledInput label="Password" value={password} type="password" onChange={setPassword} />
-        <Button type="submit" appearance="light" className="mt-5" text="Log in" />
+        <div className="flex flex-row items-center">
+          <Button type="submit" appearance="light" className="mt-5" text="Log in" />
+          {loading && <LoadingSpinner/>}
+        </div>
       </form>
       <small className="mt-4 text-sm font-semibold text-blue-600/50 dark:text-blue-500/50">
         Not an existing client ?{' '}

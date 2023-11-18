@@ -17,7 +17,7 @@ export async function middleware(req: NextRequest) {
     //console.log(data)
     console.log(req.nextUrl.pathname, data.data.session)
     if (!data.data.session && PROTECTED_ROUTES.includes(req.nextUrl.pathname)) {
-      return NextResponse.redirect(new URL('/', req.url))
+      return NextResponse.redirect(new URL('/login', req.url))
     }
     if (data.data.session && OPPOSITE_TO_PROTECTED_ROUTES.includes(req.nextUrl.pathname)) {
       return NextResponse.redirect(new URL('/', req.url))

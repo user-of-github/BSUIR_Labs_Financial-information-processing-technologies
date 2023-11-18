@@ -2,7 +2,7 @@ import clsx from 'clsx';
 
 interface ButtonProps {
   type: 'button' | 'submit' | 'reset';
-  text: string | number;
+  text: string | number | JSX.Element;
   onClick?: () => void;
   appearance: keyof typeof buttonStyles;
   className?: string;
