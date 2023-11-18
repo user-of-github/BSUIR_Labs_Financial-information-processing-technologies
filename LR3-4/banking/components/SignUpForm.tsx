@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import React from 'react';
 import { ErrorBadge, SuccessBadge } from '@/components/UI/StateBadge';
@@ -31,29 +31,37 @@ export const SignUpForm = (): JSX.Element => {
           middle_name: middleName,
           last_name: lastName,
           passport_id: passportId
-        },
+        }
       }
     });
 
     if (response.error) {
       setError(`${response.error.message}`);
-    } else if (response.data){
+    } else if (response.data) {
       setSuccess(`Successfully signed up. Go to /login page`);
     }
   };
 
   if (success) {
-    return <SuccessBadge title="SUCCESS" text={success}/>;
+    return <SuccessBadge title="SUCCESS" text={success} />;
   }
 
   return (
     <form
-      className="mr-auto flex w-3/5 max-md:w-full flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800"
+      className="mr-auto flex w-3/5 flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 max-md:w-full"
       onSubmit={handleSubmit}
       autoComplete="on"
     >
-      {error && <ErrorBadge title="ERROR" text={error}/> }
-      <LabeledInput required label="First name" value={firstName} type="text" onChange={setFirstName} placeholder="Loki" pattern="[A-Za-z А-Яа-я\-]{4, }" />
+      {error && <ErrorBadge title="ERROR" text={error} />}
+      <LabeledInput
+        required
+        label="First name"
+        value={firstName}
+        type="text"
+        onChange={setFirstName}
+        placeholder="Loki"
+        pattern="[A-Za-z А-Яа-я\-]{4, }"
+      />
       <LabeledInput required label="Last name" value={lastName} type="text" onChange={setLastName} placeholder="Odinson" />
       <LabeledInput
         required

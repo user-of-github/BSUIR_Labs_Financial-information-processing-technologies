@@ -4,7 +4,9 @@ import { cookies } from 'next/headers';
 
 export default async function AccountPage() {
   const supabase = createServerComponentClient({ cookies });
-  const { data: {session} } = await supabase.auth.getSession();
+  const {
+    data: { session }
+  } = await supabase.auth.getSession();
 
-  return <>{JSON.stringify(session?.user)}</>
+  return <>{JSON.stringify(session?.user)}</>;
 }

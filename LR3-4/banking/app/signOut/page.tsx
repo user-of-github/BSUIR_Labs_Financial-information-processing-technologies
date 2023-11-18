@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import { createClientComponentClient, createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { useRouter } from 'next/navigation';
@@ -15,9 +15,7 @@ export default function SignOutPage() {
     router.push('/');
   };
 
-  React.useEffect(() => void signOut(), [])
+  React.useEffect(() => void signOut(), []);
 
-  return (
-    <InfoBadge title="Logging out..." text={<LoadingSpinner/>} />
-  )
+  return <InfoBadge title="Logging out..." text={<LoadingSpinner />} />;
 }

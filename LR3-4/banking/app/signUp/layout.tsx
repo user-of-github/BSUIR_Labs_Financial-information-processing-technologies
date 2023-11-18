@@ -4,7 +4,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
-export default async function SignUpLayout({children}: React.PropsWithChildren) {
+export default async function SignUpLayout({ children }: React.PropsWithChildren) {
   const supabase = createServerComponentClient({ cookies });
   const sessionData = await supabase.auth.getSession();
 

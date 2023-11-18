@@ -2,7 +2,5 @@ import React from 'react';
 import { SignUpForm } from '@/components/SignUpForm';
 
 export default function SignUpPage(): JSX.Element {
-  return (
-    <SignUpForm/>
-  )
+  return <SignUpForm />;
 }
