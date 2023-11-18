@@ -1,6 +1,7 @@
-import supabase from '@/core/database/database';
 import { CurrencyConverterForm } from '@/components/CurrencyConverterForm';
 import { CurrencyTariff, DBResponse } from '@/core/types';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+import { cookies } from 'next/headers';
 
 const createCurrencyConversionMap = (data: CurrencyTariff[]): Map<string, Map<string, number>> => {
   const response = new Map<string, Map<string, number>>();
@@ -19,6 +20,7 @@ const createCurrencyConversionMap = (data: CurrencyTariff[]): Map<string, Map<st
 };
 
 export default async function CurrencyConverter(): Promise<JSX.Element> {
+  const supabase = createServerComponentClient({ cookies });
   const { data } = (await supabase
     .from('CurrencyTariffs')
     .select('coefficient, to(short_code_title), from(short_code_title)')) as DBResponse<CurrencyTariff[]>;

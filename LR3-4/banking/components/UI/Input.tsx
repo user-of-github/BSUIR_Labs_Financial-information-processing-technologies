@@ -41,6 +41,7 @@ export const Input = <InputValueType extends SupportedInputValueType>({
       maxLength={maxLength}
       required={required}
       pattern={pattern}
+      autoComplete="on"
     />
   );
 };

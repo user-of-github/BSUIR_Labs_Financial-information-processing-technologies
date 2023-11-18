@@ -6,10 +6,12 @@ import { ColoredHeading } from '@/components/UI/ColoredHeading';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { Button } from '@/components/UI/Button';
 import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 export default function SignUpPage(): JSX.Element {
   const supabase = createClientComponentClient();
 
+  const router = useRouter();
   const [email, setEmail] = React.useState<string>('');
   const [password, setPassword] = React.useState<string>('');
 
@@ -22,7 +24,12 @@ export default function SignUpPage(): JSX.Element {
     });
 
     if (error) {
+      console.log(error)
       window.alert('Failed to log in');
+    }
+
+    if (data.user) {
+      router.push('/');
     }
   };
 
