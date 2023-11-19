@@ -39,18 +39,18 @@ export default function SignUpPage(): JSX.Element {
     }
 
     if (data.user) {
-      router.push('/account');
       router.refresh();
+      router.push('/account');
     }
   };
 
   return (
     <>
-      <ColoredHeading headingLevel={1} coloredText="Log in" ordinaryText=" form" />
       <form
         className="relative mr-auto flex w-3/5 flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 max-md:w-full"
         onSubmit={handleSubmit}
         autoComplete="on"
+        autoSave="on"
       >
         {error && <ErrorBadge title="Error" text={error} className="absolute -right-1.5 -top-[20px]" />}
         <LabeledInput label="Email" value={email} type="email" onChange={setEmail} placeholder="example@email.com" />

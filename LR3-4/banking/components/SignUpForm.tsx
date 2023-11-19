@@ -15,6 +15,7 @@ export const SignUpForm = (): JSX.Element => {
   const [lastName, setLastName] = React.useState<string>('');
   const [passportId, setPassportId] = React.useState<string>('');
   const [email, setEmail] = React.useState<string>('');
+  const [phone, setPhone] = React.useState<string>('');
   const [password, setPassword] = React.useState<string>('');
   const [error, setError] = React.useState<string | undefined>();
   const [success, setSuccess] = React.useState<string | undefined>();
@@ -24,15 +25,19 @@ export const SignUpForm = (): JSX.Element => {
     setError(undefined);
     setSuccess(undefined);
 
+    // let's check if email exists already
+
     const response = await supabase.auth.signUp({
       email,
       password,
+      phone,
       options: {
         data: {
           first_name: firstName,
           middle_name: middleName,
           last_name: lastName,
-          passport_id: passportId
+          passport_id: passportId,
+          client_from_date: new Date().toDateString()
         }
       }
     });
@@ -40,7 +45,7 @@ export const SignUpForm = (): JSX.Element => {
     if (response.error) {
       setError(`${response.error.message}`);
     } else if (response.data) {
-      setSuccess(`Successfully signed up. Go to /login page`);
+      setSuccess('Congratulations. Go to your inbox, verify email and start being our client ! If this email already associated with some account, you already can login');
     }
   };
 
@@ -61,17 +66,17 @@ export const SignUpForm = (): JSX.Element => {
         value={firstName}
         type="text"
         onChange={setFirstName}
-        placeholder="Loki"
+        placeholder="What is your name ?"
         pattern="[A-Za-z А-Яа-я\-]{4, }"
       />
-      <LabeledInput required label="Last name" value={lastName} type="text" onChange={setLastName} placeholder="Odinson" />
+      <LabeledInput required label="Last name" value={lastName} type="text" onChange={setLastName} placeholder="And now surname" />
       <LabeledInput
         required
         label="Middle name (if there is)"
         value={middleName}
         type="text"
         onChange={setMiddleName}
-        placeholder="Laufeyson"
+        placeholder="Middlename"
       />
       <LabeledInput
         required
@@ -82,7 +87,8 @@ export const SignUpForm = (): JSX.Element => {
         placeholder="MR1234567"
         maxLength={10}
       />
-      <LabeledInput required label="Email" value={email} type="email" onChange={setEmail} />
+      <LabeledInput required label="Mobile phone" value={phone} type="tel" onChange={setPhone} placeholder="+375..." />
+      <LabeledInput required label="Email" value={email} type="email" onChange={setEmail} placeholder="your.real.email@email.com" />
       <LabeledInput required label="Password" value={password} type="password" onChange={setPassword} />
 
       <Button type="submit" appearance="purple" className="mt-5" text="Verify your email and register" />

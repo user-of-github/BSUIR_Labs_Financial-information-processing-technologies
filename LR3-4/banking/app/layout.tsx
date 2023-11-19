@@ -19,7 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body className={`${inter.className} overflow-y-scroll pb-20`}>
         <div className="h-2 w-full bg-gradient-to-r from-cyan-500 to-blue-500"></div>
         <Navigation headingElement={HeadingElement} routes={routes} />
-        <main className="container m-auto mt-2 flex w-full flex-col py-5 max-sm:px-2 sm:px-6">{children}</main>
+        <main className="container m-auto mt-2 flex w-full flex-col py-5 max-sm:px-2 sm:px-10">{children}</main>
       </body>
     </html>
   );

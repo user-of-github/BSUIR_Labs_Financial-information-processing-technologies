@@ -45,6 +45,10 @@ export const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => (
             <dt className={textHeadingClassName}>Passport ID</dt>
             <dd className={textContentClassName}>{props.passportId?.slice(0, props.passportId.length - 3) + '***'}</dd>
           </div>
+          <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+            <dt className={textHeadingClassName}>Our client since:</dt>
+            <dd className={textContentClassName}>{props.clientFrom}</dd>
+          </div>
           <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 items-center">
             <dt className={textHeadingClassName}>Your money accounts</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
