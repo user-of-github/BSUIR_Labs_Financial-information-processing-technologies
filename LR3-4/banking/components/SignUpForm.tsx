@@ -1,9 +1,11 @@
 'use client';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+
 import React from 'react';
-import { ErrorBadge, SuccessBadge } from '@/components/UI/StateBadge';
-import { LabeledInput } from '@/components/UI/LabeledInput';
+
 import { Button } from '@/components/UI/Button';
+import { LabeledInput } from '@/components/UI/LabeledInput';
+import { ErrorBadge, SuccessBadge } from '@/components/UI/StateBadge';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export const SignUpForm = (): JSX.Element => {
   const supabase = createClientComponentClient();

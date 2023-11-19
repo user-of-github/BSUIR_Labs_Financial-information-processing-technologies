@@ -1,7 +1,9 @@
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
 import React from 'react';
+
+import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
+
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export const ProtectedComponent = async ({ children }: React.PropsWithChildren<any>) => {
   const supabase = createServerComponentClient({ cookies });

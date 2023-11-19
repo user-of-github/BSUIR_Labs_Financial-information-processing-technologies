@@ -1,14 +1,16 @@
 'use client';
 
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import React from 'react';
-import { ColoredHeading } from '@/components/UI/ColoredHeading';
-import { LabeledInput } from '@/components/UI/LabeledInput';
-import { Button } from '@/components/UI/Button';
+
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-import { ErrorBadge } from '@/components/UI/StateBadge';
+
+import { Button } from '@/components/UI/Button';
+import { ColoredHeading } from '@/components/UI/ColoredHeading';
+import { LabeledInput } from '@/components/UI/LabeledInput';
 import { LoadingSpinner } from '@/components/UI/LoadingSpinner';
+import { ErrorBadge } from '@/components/UI/StateBadge';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default function SignUpPage(): JSX.Element {
   const supabase = createClientComponentClient();

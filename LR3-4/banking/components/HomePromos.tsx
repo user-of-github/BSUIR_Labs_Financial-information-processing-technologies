@@ -1,4 +1,5 @@
 import Link from 'next/link';
+
 import { PromoBlock } from '@/components/PromoBlock';
 
 export const HomePromos = (): JSX.Element => (
@@ -12,9 +13,9 @@ export const HomePromos = (): JSX.Element => (
       color="rgb(242, 247, 255)"
       titleClassName="mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white"
     />
-    <Link href="/newBill">
+    <Link href="/newMoneyAccount">
       <PromoBlock
-        title="Opening a new bill"
+        title="Opening a new money account"
         description="Create your first or additional bill in any currency you like"
         backgroundImage="/assets/images/accounting.png"
         color="rgb(251, 245, 255)"

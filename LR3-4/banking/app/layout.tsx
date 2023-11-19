@@ -1,7 +1,9 @@
-import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
-import { Navigation } from '@/components/Navigation';
+
 import { HeadingElement, routes } from '@/app/constants';
+import { Navigation } from '@/components/Navigation';
+import type { Metadata } from 'next';
+
 import './globals.css';
 
 const inter = Inter({ subsets: ['cyrillic', 'latin'] });

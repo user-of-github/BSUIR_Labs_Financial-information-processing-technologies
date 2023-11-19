@@ -1,8 +1,9 @@
+import { cookies } from 'next/headers';
 import Link from 'next/link';
+
+import { Button } from '@/components/UI/Button';
 import { Route } from '@/core/types';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
-import { Button } from '@/components/UI/Button';
 
 interface NavigationProps {
   routes: Route[];

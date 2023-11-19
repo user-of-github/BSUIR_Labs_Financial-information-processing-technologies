@@ -1,6 +1,7 @@
-import { DBResponse, CurrencyBuySell } from '@/core/types';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
+
+import { CurrencyBuySell, DBResponse } from '@/core/types';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default async function CurrencyRates(): Promise<JSX.Element> {
   const supabase = createServerComponentClient({ cookies });

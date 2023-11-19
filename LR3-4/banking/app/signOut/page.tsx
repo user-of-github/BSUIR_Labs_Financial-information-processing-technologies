@@ -1,10 +1,12 @@
 'use client';
-import { createClientComponentClient, createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
-import { useRouter } from 'next/navigation';
+
 import React from 'react';
-import { InfoBadge } from '@/components/UI/StateBadge';
+
+import { useRouter } from 'next/navigation';
+
 import { LoadingSpinner } from '@/components/UI/LoadingSpinner';
+import { InfoBadge } from '@/components/UI/StateBadge';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default function SignOutPage() {
   const supabase = createClientComponentClient();

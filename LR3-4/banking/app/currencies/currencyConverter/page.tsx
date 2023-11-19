@@ -1,7 +1,8 @@
+import { cookies } from 'next/headers';
+
 import { CurrencyConverterForm } from '@/components/CurrencyConverterForm';
 import { CurrencyTariff, DBResponse } from '@/core/types';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { cookies } from 'next/headers';
 
 const createCurrencyConversionMap = (data: CurrencyTariff[]): Map<string, Map<string, number>> => {
   const response = new Map<string, Map<string, number>>();
