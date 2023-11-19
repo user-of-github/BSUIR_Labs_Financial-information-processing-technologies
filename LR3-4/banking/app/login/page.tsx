@@ -39,7 +39,7 @@ export default function SignUpPage(): JSX.Element {
     }
 
     if (data.user) {
-      router.push('/');
+      router.push('/account');
       router.refresh();
     }
   };

@@ -1,5 +1,8 @@
 import { cookies } from 'next/headers';
+import { redirect } from 'next/navigation';
 
+import { ProfileDetails } from '@/components/ProfileDetails';
+import { BaseUser, UserMetaData } from '@/core/types';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default async function AccountPage() {
@@ -8,5 +11,22 @@ export default async function AccountPage() {
     data: { session }
   } = await supabase.auth.getSession();
 
-  return <>{JSON.stringify(session?.user)}</>;
+  if (!session || !session?.user) {
+    redirect('/signOut');
+  }
+
+  const baseUser = session?.user as unknown as BaseUser;
+  const metadata = (await supabase.from('Profiles').select('*').eq('id', baseUser.id)).data?.[0] as UserMetaData;
+  return (
+    <>
+      <ProfileDetails
+        email={baseUser.email}
+        firstName={metadata.first_name}
+        lastName={metadata.last_name}
+        middleName={metadata.middle_name}
+        passportId={metadata.passport_id}
+        clientFrom={metadata.client_from_date}
+      />
+    </>
+  );
 }
