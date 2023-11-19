@@ -45,7 +45,9 @@ export const SignUpForm = (): JSX.Element => {
     if (response.error) {
       setError(`${response.error.message}`);
     } else if (response.data) {
-      setSuccess('Congratulations. Go to your inbox, verify email and start being our client ! If this email already associated with some account, you already can login');
+      setSuccess(
+        'Congratulations. Go to your inbox, verify email and start being our client ! If this email already associated with some account, you already can login'
+      );
     }
   };
 
@@ -69,7 +71,14 @@ export const SignUpForm = (): JSX.Element => {
         placeholder="What is your name ?"
         pattern="[A-Za-z А-Яа-я\-]{4, }"
       />
-      <LabeledInput required label="Last name" value={lastName} type="text" onChange={setLastName} placeholder="And now surname" />
+      <LabeledInput
+        required
+        label="Last name"
+        value={lastName}
+        type="text"
+        onChange={setLastName}
+        placeholder="And now surname"
+      />
       <LabeledInput
         required
         label="Middle name (if there is)"
@@ -88,7 +97,14 @@ export const SignUpForm = (): JSX.Element => {
         maxLength={10}
       />
       <LabeledInput required label="Mobile phone" value={phone} type="tel" onChange={setPhone} placeholder="+375..." />
-      <LabeledInput required label="Email" value={email} type="email" onChange={setEmail} placeholder="your.real.email@email.com" />
+      <LabeledInput
+        required
+        label="Email"
+        value={email}
+        type="email"
+        onChange={setEmail}
+        placeholder="your.real.email@email.com"
+      />
       <LabeledInput required label="Password" value={password} type="password" onChange={setPassword} />
 
       <Button type="submit" appearance="purple" className="mt-5" text="Verify your email and register" />

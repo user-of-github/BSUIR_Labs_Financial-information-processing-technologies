@@ -12,7 +12,7 @@ interface PromoBlockProps {
   titleClassName?: string;
 }
 
-// TODO: rems, isClickable, clsx
+// TODO: rems
 export const PromoBlock = ({
   title,
   titleClassName,
