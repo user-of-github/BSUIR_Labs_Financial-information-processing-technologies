@@ -1,18 +1,19 @@
-import { MoneyAccount } from '@/core/types';
 import Link from 'next/link';
+
 import { InfoBadge } from '@/components/UI/StateBadge';
+import { MoneyAccount } from '@/core/types';
 
 type MoneyAccountRowCardProps = Omit<MoneyAccount, 'owner'>;
-
 
 export const MoneyAccountRowCard = (props: MoneyAccountRowCardProps) => {
   return (
     <div className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-        <h5 className="mb-4 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
-          Money account <br/> {props.number.slice(0, 10) + new Array(props.number.length - 10).fill('*').join('') + props.number.slice(20)}
-        </h5>
+      <h5 className="mb-4 text-xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        Money account <br />{' '}
+        {props.number.slice(0, 10) + new Array(props.number.length - 10).fill('*').join('') + props.number.slice(20)}
+      </h5>
       <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">
-        <InfoBadge title={props.currency.code} className="mr-auto w-auto max-w-[100px]"/>
+        <InfoBadge title={props.currency.code} className="mr-auto w-auto max-w-[100px]" />
       </p>
       <Link href={`/account/moneyAccounts/${props.number}`} className="inline-flex items-center text-blue-600 hover:underline">
         See this money account

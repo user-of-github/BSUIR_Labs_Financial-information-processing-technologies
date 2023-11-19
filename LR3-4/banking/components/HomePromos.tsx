@@ -13,7 +13,7 @@ export const HomePromos = (): JSX.Element => (
       color="rgb(242, 247, 255)"
       titleClassName="mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white"
     />
-    <Link href="/newMoneyAccount">
+    <Link href="/account/moneyAccounts/create">
       <PromoBlock
         title="Opening a new money account"
         description="Create your first or additional bill in any currency you like"

@@ -17,9 +17,9 @@ const textHeadingClassName = 'text-md font-medium text-gray-500' as const;
 export const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => (
   <>
     <ColoredHeading headingLevel={1} coloredText="Welcome to your account, " ordinaryText={props.firstName} />
-    <section className="bg-white overflow-hidden shadow rounded-lg border">
+    <section className="bg-white overflow-hidden shadow rounded-lg border mt-5">
       <div className="px-4 py-5 sm:px-6">
-        <p className="mt-1 max-w-2xl text-sm text-gray-500">This is some information about you.</p>
+        <p className="mt-1 max-w-2xl text-sm text-gray-500">Here is some information about you.</p>
       </div>
       <div className="border-t border-gray-200 px-4 py-5 sm:p-0">
         <dl className="sm:divide-y sm:divide-gray-200">

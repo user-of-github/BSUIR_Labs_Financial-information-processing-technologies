@@ -34,11 +34,11 @@ export const Navigation = async (props: NavigationProps) => {
           <li>
             {session ? (
               <Link href="/signOut">
-                <Button type="button" text="Log out" appearance="purple" className="w-full" />
+                <Button type="button" text="Log out" appearance="primary" className="w-full" />
               </Link>
             ) : (
               <Link href="/login">
-                <Button type="button" text="Log in" appearance="purple" className="w-full" />
+                <Button type="button" text="Log in" appearance="primary" className="w-full" />
               </Link>
             )}
           </li>
