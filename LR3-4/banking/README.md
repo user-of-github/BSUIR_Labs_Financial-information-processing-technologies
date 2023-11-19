@@ -1,29 +1,15 @@
 # _Online Banking Web App_   
 ___  
-### _Created by @user-of-github_   
+#### _Created by [@user-of-github](github.com/user-of-github)_   
 ___   
 ## Technologies stack:  
-- _NextJS_  
-- _TypeScript_  
-- _SupaBase_  
-- _Tailwind CSS_  
+- _[Next.js](https://nextjs.org/)_  
+- _[TypeScript](https://www.typescriptlang.org/)_  
+- _[SupaBase](https://supabase.com/)_  
+- _[Tailwind CSS](https://tailwindcss.com/)_  
 ___
 ## Getting Started
-
-First, run the development server:
-
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
-
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
-
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
-
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+- `npm install`  
+- _Set up ENV variables if necessary_
+- `npm run dev`
+ - _Open [http://localhost:3000](http://localhost:3000) with your browser to see the result._
