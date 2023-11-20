@@ -26,6 +26,7 @@ export default async function MoneyAccountsListPage() {
         {moneyAccounts.data.map((moneyAccount) => (
           <MoneyAccountRowCard key={moneyAccount.number} {...moneyAccount} />
         ))}
+        {moneyAccounts.data.length === 0 && <span className="text-gray-500 text-xl italic">No money accounts, create your first !</span>}
       </div>
 
       <Link href="/account/moneyAccounts/create">

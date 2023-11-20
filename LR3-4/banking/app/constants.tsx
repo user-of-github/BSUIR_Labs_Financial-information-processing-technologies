@@ -20,7 +20,11 @@ export const routes: Route[] = [
     link: '/currencies'
   },
   {
-    title: 'Account',
+    title: 'Payments',
+    link: '/payments'
+  },
+  {
+    title: 'My account',
     link: '/account'
   }
 ];

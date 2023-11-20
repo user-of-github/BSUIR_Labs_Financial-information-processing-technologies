@@ -3,10 +3,10 @@ import Link from 'next/link';
 import { PromoBlock } from '@/components/PromoBlock';
 
 export const HomePromos = (): JSX.Element => (
-  <div className="grid w-full grid-cols-2 gap-x-6 gap-y-7 max-sm:grid-cols-1">
+  <div className="grid w-full grid-cols-2 gap-x-6 gap-y-7 max-sm:grid-cols-2 max-md:gap-x-2">
     <PromoBlock
       isClickable={false}
-      className="sm:col-span-2"
+      className="col-span-2"
       title="Online Banking System"
       description="This system was created during 'Financial processing technologies' at BSUIR by Slutski Mikita. The main stack includes NextJS and TypeScript. Welcome to online Banking system, which allows you to create bills, make loans, transfer money and exchange currency"
       backgroundImage="/assets/images/debit-card.png"

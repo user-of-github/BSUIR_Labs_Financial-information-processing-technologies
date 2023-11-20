@@ -5,6 +5,12 @@ export interface Route {
   link: string;
 }
 
+export interface Currency {
+  short_code_title: string;
+  title: string;
+  id: string;
+}
+
 export interface CurrencyBuySell {
   currency: { code: string };
   bank_buys: number;
