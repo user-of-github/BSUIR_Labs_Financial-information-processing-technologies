@@ -1,8 +1,9 @@
-import { ColoredHeading } from '@/components/UI/ColoredHeading';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { cookies } from 'next/headers';
+
 import { RequestForMoneyAccountForm } from '@/components/RequestForMoneyAccountForm';
+import { ColoredHeading } from '@/components/UI/ColoredHeading';
 import { Currency } from '@/core/types';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default async function CreateMoneyAccountPage() {
   const supabase = createServerComponentClient({ cookies });

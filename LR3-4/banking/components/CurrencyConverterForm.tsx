@@ -1,9 +1,10 @@
 'use client';
+
 import React from 'react';
 
 import { LabeledInput } from '@/components/UI/LabeledInput';
-import clsx from 'clsx';
 import { Select } from '@/components/UI/Select';
+import clsx from 'clsx';
 
 interface CurrencyConverterFormProps {
   conversionRatios: Map<string, Map<string, number>>;
@@ -72,7 +73,7 @@ const CurrencySelectionBlock = ({
           <label htmlFor="years" className="mb-1 block text-sm font-medium text-gray-900 dark:text-white">
             Select an option
           </label>
-         <Select selectedLabel={selected} values={currenciesList} onChange={onCurrencyNameChange} size={3}/>
+          <Select selectedLabel={selected} values={currenciesList} onChange={onCurrencyNameChange} size={3} />
         </div>
         <LabeledInput label="Value" type="number" value={enteredValue} disabled={disabled} onChange={onCurrencyValueChange} />
       </div>
