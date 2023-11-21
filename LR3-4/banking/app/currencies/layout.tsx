@@ -1,5 +1,9 @@
 import { CurrenciesNavigation } from '@/components/CurrenciesNavigation';
 
+export const metadata = {
+  title: 'Currencies'
+};
+
 export default function CurrenciesLayout({ children }: { children: React.ReactNode }): JSX.Element {
   return (
     <>

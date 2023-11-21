@@ -3,7 +3,7 @@ import type { NextRequest } from 'next/server';
 
 import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 
-const PROTECTED_ROUTES = ['/account', '/payments'];
+const PROTECTED_ROUTES = ['/account', '/payments', '/account/moneyAccounts', '/account/moneyAccounts/create'];
 const OPPOSITE_TO_PROTECTED_ROUTES = ['/login', '/signUp'];
 
 export async function middleware(req: NextRequest) {

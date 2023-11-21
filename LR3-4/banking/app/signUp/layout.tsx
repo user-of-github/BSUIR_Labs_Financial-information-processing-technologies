@@ -2,6 +2,9 @@ import React from 'react';
 
 import { ColoredHeading } from '@/components/UI/ColoredHeading';
 
+export const metadata = {
+  title: 'Register'
+};
 export default function SignUpLayout({ children }: React.PropsWithChildren) {
   return (
     <>

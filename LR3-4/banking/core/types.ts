@@ -43,6 +43,7 @@ export interface UserMetaData {
   last_name: string;
   passport_id: string;
   client_from_date: string;
+  id: string;
 }
 
 export interface MoneyAccount {
@@ -51,4 +52,5 @@ export interface MoneyAccount {
   date_opened: string;
   number: string;
   currency: { code: string };
+  name: string;
 }
