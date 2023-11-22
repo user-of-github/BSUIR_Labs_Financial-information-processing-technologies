@@ -2,6 +2,9 @@ import { cookies } from 'next/headers';
 
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Metadata } from 'next';
+import { DBResponse, MoneyAccount } from '@/core/types';
+import { ColoredHeading } from '@/components/UI/ColoredHeading';
+import { MoneyAccountData } from '@/components/MoneyAccountData';
 
 interface MoneyAccountProps {
   params: {
@@ -16,7 +19,12 @@ export const metadata: Metadata = {
 
 export default async function MoneyAccount(props: MoneyAccountProps) {
   const supabase = createServerComponentClient({ cookies });
-  const account = await supabase.from('BankAccounts').select('*');
+  const account = (await supabase.from('BankAccounts').select('*, currency(code:short_code_title)').eq('number', props.params.id)) as DBResponse<MoneyAccount[]>;
 
-  return <>{JSON.stringify(account)}</>;
+  if (account.data?.length === 0) {
+    return <ColoredHeading headingLevel={2} ordinaryText="Not found" />
+  }
+  return <>
+    <MoneyAccountData account={account.data[0]}/>
+  </>;
 }
