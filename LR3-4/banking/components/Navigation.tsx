@@ -11,7 +11,8 @@ interface NavigationProps {
 }
 
 export const Navigation = async (props: NavigationProps) => {
-  const supabase = createServerComponentClient({ cookies });
+  cookies().getAll();
+const supabase = createServerComponentClient({ cookies });
   const data = await supabase.auth.getSession();
   const session = data?.data?.session;
 

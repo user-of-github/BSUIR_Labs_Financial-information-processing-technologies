@@ -29,7 +29,7 @@ export const HomePromos = (): JSX.Element => (
         color="rgb(219, 255, 245)"
       />
     </Link>
-    <Link href="/moneyTransfer">
+    <Link href="/payments">
       <PromoBlock
         title="Money transfers"
         description="Check out our new feature — quick transfers via QR codes !"

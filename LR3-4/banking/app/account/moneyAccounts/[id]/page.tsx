@@ -18,7 +18,8 @@ export const metadata: Metadata = {
 };
 
 export default async function MoneyAccount(props: MoneyAccountProps) {
-  const supabase = createServerComponentClient({ cookies });
+  cookies().getAll();
+const supabase = createServerComponentClient({ cookies });
   const account = (await supabase.from('BankAccounts').select('*, currency(code:short_code_title)').eq('number', props.params.id)) as DBResponse<MoneyAccount[]>;
 
   if (account.data?.length === 0) {

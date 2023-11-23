@@ -10,10 +10,17 @@
 
 - _[Next.js](https://nextjs.org/)_
 - _[TypeScript](https://www.typescriptlang.org/)_
-- _[SupaBase](https://supabase.com/)_
+- _[Supabase](https://supabase.com/)_
 - _[Tailwind CSS](https://tailwindcss.com/)_
 
----
+---  
+## Some other interesting features:   
+- _Used Postgres stored functions and triggers_  
+- _Created similar to responsive layout, comfortable to use on the go_  
+- _Deployed to Vercel_  
+- _Set up prettier with formatting rules_  
+- _Restrictions of access to table on level of Database (Supabase RLS)_
+___
 
 ## Getting Started
 

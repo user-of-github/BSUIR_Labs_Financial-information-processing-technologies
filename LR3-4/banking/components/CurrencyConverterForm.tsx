@@ -68,7 +68,7 @@ const CurrencySelectionBlock = ({
   return (
     <section className="flex w-auto flex-col rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800">
       <h2 className="pb-5 text-3xl font-bold dark:text-white">{title}</h2>
-      <div className="flex flex-row items-center gap-x-3 border-t border-t-neutral-200 pt-5">
+      <div className="flex flex-row items-center max-md:items-end gap-x-3 border-t border-t-neutral-200 pt-5">
         <div className="flex flex-col">
           <label htmlFor="years" className="mb-1 block text-sm font-medium text-gray-900 dark:text-white">
             Select an option

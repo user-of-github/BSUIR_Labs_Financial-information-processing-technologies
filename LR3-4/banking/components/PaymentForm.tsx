@@ -2,17 +2,18 @@
 
 import React from 'react';
 
+import { QrScannerComponent } from '@/components/QrScanner';
 import { Button } from '@/components/UI/Button';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { Select } from '@/components/UI/Select';
 import { MoneyAccount } from '@/core/types';
-import { QrScannerComponent } from '@/components/QrScanner';
 
 interface PaymentFormProps {
   availableAccounts: MoneyAccount[];
 }
 export const PaymentForm = (props: PaymentFormProps) => {
   const [sendersAccount, setSendersAccount] = React.useState<string>('');
+  const [transferedSum, setTransferedSum] = React.useState<number>(0);
   const [selectedAccount, setSelectedAccount] = React.useState(props.availableAccounts[0].number);
   const [selectedAccountInfo, setSelectedAccountInfo] = React.useState<[string, string, string]>([
     props.availableAccounts[0].currency.code,
@@ -25,8 +26,8 @@ export const PaymentForm = (props: PaymentFormProps) => {
     // TODO: 2factor
   };
 
-  const openQRScanner = () => {
-    setQrScannerShown(true);
+  const toggleQrScannerShown = () => {
+    setQrScannerShown(isShown => !isShown);
   };
 
   const onScanValues = (value: string) => {
@@ -39,7 +40,6 @@ export const PaymentForm = (props: PaymentFormProps) => {
           setSendersAccount(parsed.number);
         }
       }
-
     } catch (error) {
       window.alert('Please use valid QR from OUR banking');
     }
@@ -52,7 +52,7 @@ export const PaymentForm = (props: PaymentFormProps) => {
 
   return (
     <form className="w-2/3 max-md:w-full flex flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow ">
-      <div className="flex flex-row gap-x-4 w-full">
+      <div className="flex flex-row gap-x-4 w-full max-md:flex-col-reverse max-md:gap-y-1">
         <Select
           values={props.availableAccounts.map((i) => i.number)}
           selectedLabel={selectedAccount}
@@ -65,8 +65,9 @@ export const PaymentForm = (props: PaymentFormProps) => {
         </div>
       </div>
       <LabeledInput label="Sender's account number" type="text" onChange={setSendersAccount} value={sendersAccount} required />
-      <Button type="button" text="Or use QR scanner" appearance="dark" onClick={openQRScanner}/>
-      {qrScannerShown && <QrScannerComponent onScan={onScanValues} onClose={() => setQrScannerShown(false)}/>}
+      <Button type="button" text={!qrScannerShown ? 'Use QR instead' : 'Close QR scanner'} appearance="dark" onClick={toggleQrScannerShown} />
+      {qrScannerShown && <QrScannerComponent onScan={onScanValues} onClose={() => setQrScannerShown(false)} />}
+      <LabeledInput label="Sum to transfer" type="number" onChange={setTransferedSum} value={transferedSum} required />
       <Button type="submit" text="Transfer money" appearance="ordinary" onClick={performPayment} />
     </form>
   );

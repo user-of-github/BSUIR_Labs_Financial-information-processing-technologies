@@ -6,6 +6,7 @@ import { BaseUser, UserMetaData } from '@/core/types';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default async function AccountPage() {
+  cookies().getAll();
   const supabase = createServerComponentClient({ cookies });
   const {
     data: { session }

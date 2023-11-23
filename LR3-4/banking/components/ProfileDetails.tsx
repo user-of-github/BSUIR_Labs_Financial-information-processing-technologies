@@ -14,6 +14,7 @@ interface ProfileDetailsProps {
 
 const textContentClassName = 'mt-1 text-md text-gray-900 sm:mt-0 sm:col-span-2' as const;
 const textHeadingClassName = 'text-md font-medium text-gray-500' as const;
+
 export const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => (
   <>
     <ColoredHeading headingLevel={1} coloredText="Welcome to your account, " ordinaryText={props.firstName} />
@@ -52,8 +53,23 @@ export const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => (
           <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 items-center">
             <dt className={textHeadingClassName}>Your money accounts</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
-              <Link href="/account/moneyAccounts">
-                <Button type="button" text="View" appearance="primary" />
+              <Link href="/account/moneyAccounts" className="inline-flex items-center text-blue-600 hover:underline">
+                View
+                <svg
+                  className="w-3 h-3 ms-2.5 rtl:rotate-[270deg]"
+                  aria-hidden="true"
+                  xmlns="http://www.w3.org/2000/svg"
+                  fill="none"
+                  viewBox="0 0 18 18"
+                >
+                  <path
+                    stroke="currentColor"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
+                    d="M15 11v4.833A1.166 1.166 0 0 1 13.833 17H2.167A1.167 1.167 0 0 1 1 15.833V4.167A1.166 1.166 0 0 1 2.167 3h4.618m4.447-2H17v5.768M9.111 8.889l7.778-7.778"
+                  />
+                </svg>
               </Link>
             </dd>
           </div>

@@ -8,7 +8,8 @@ import { DBResponse, MoneyAccount } from '@/core/types';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default async function MoneyAccountsListPage() {
-  const supabase = createServerComponentClient({ cookies });
+  cookies().getAll();
+const supabase = createServerComponentClient({ cookies });
   const moneyAccounts = (await supabase.from('BankAccounts').select('*, currency(code:short_code_title)')) as DBResponse<
     MoneyAccount[]
   >;
