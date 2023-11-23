@@ -26,5 +26,9 @@ export const routes: Route[] = [
   {
     title: 'My profile',
     link: '/account'
+  },
+  {
+    title: 'Loans',
+    link: '/account/loans'
   }
 ];

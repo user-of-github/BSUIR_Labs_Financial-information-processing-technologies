@@ -3,14 +3,15 @@
 import React from 'react';
 
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { redirect, useRouter } from 'next/navigation';
 
 import { Button } from '@/components/UI/Button';
-import { ColoredHeading } from '@/components/UI/ColoredHeading';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { LoadingSpinner } from '@/components/UI/LoadingSpinner';
-import { ErrorBadge } from '@/components/UI/StateBadge';
+import { ErrorBadge, InfoBadge } from '@/components/UI/StateBadge';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import clsx from 'clsx';
+import { createTransport } from 'nodemailer';
 
 export default function SignUpPage(): JSX.Element {
   const supabase = createClientComponentClient();
@@ -19,16 +20,29 @@ export default function SignUpPage(): JSX.Element {
   const [email, setEmail] = React.useState<string>('');
   const [password, setPassword] = React.useState<string>('');
   const [error, setError] = React.useState<string | undefined>(undefined);
+  const [letterSent, setLetterSent] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     setError(undefined);
     setLoading(true);
-    event.preventDefault();
+
+    const isPassword = await supabase.rpc('check_if_password_correct', {
+      current_plain_password: password,
+      current_email: email
+    });
+    setLoading(false);
+    console.log(isPassword);
+
+    if (isPassword.error || !isPassword.data) {
+      setError('Invalid login or password');
+      return;
+    }
 
     const { data, error } = await supabase.auth.signInWithPassword({
-      email: email,
-      password: password
+      email,
+      password
     });
 
     setLoading(false);
@@ -46,8 +60,12 @@ export default function SignUpPage(): JSX.Element {
 
   return (
     <>
+      {letterSent && <InfoBadge title="2 Factor auth: " text="Letter with confirmation link sent to your email" />}
       <form
-        className="relative mr-auto flex w-3/5 flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 max-md:w-full"
+        className={clsx(
+          'relative mr-auto flex w-3/5 flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 max-md:w-full',
+          { 'pointer-events-none opacity-30': letterSent }
+        )}
         onSubmit={handleSubmit}
         autoComplete="on"
         autoSave="on"

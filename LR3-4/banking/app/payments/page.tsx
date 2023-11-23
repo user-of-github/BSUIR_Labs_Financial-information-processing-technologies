@@ -19,7 +19,7 @@ export default async function PaymentsPage() {
   return (
     <>
       <ColoredHeading headingLevel={2} ordinaryText=" page" swap coloredText="Payments " />
-      <PaymentForm availableAccounts={myAccounts.data as MoneyAccount[]} tariffs={conversionRules}/>
+      <PaymentForm availableAccounts={myAccounts.data as MoneyAccount[]} tariffs={conversionRules} />
     </>
   );
 }
