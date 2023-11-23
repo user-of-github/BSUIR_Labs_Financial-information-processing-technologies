@@ -7,13 +7,23 @@ import { Button } from '@/components/UI/Button';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { Select } from '@/components/UI/Select';
 import { MoneyAccount } from '@/core/types';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { ErrorBadge, SuccessBadge } from '@/components/UI/StateBadge';
+import { LoadingSpinner } from '@/components/UI/LoadingSpinner';
+import clsx from 'clsx';
+import { ConversionRules } from '@/core/utils';
+import Link from 'next/link';
+import { useRouter } from 'next/navigation';
 
 interface PaymentFormProps {
   availableAccounts: MoneyAccount[];
+  tariffs: ConversionRules;
 }
 export const PaymentForm = (props: PaymentFormProps) => {
-  const [sendersAccount, setSendersAccount] = React.useState<string>('');
-  const [transferedSum, setTransferedSum] = React.useState<number>(0);
+  const supabase = createClientComponentClient();
+
+  const [receiversAccount, setReceiversAccount] = React.useState<string>('');
+  const [transferredSum, setTransferredSum] = React.useState<number>(0);
   const [selectedAccount, setSelectedAccount] = React.useState(props.availableAccounts[0].number);
   const [selectedAccountInfo, setSelectedAccountInfo] = React.useState<[string, string, string]>([
     props.availableAccounts[0].currency.code,
@@ -22,12 +32,45 @@ export const PaymentForm = (props: PaymentFormProps) => {
   ]);
 
   const [qrScannerShown, setQrScannerShown] = React.useState<boolean>(false);
-  const performPayment = () => {
-    // TODO: 2factor
+
+  const [error, setError] = React.useState<string | undefined>(undefined);
+  const [success, setSuccess] = React.useState<string | undefined>(undefined);
+  const [loading, setLoading] = React.useState<boolean>(false);
+
+  const validate = () => {
+    if ((transferredSum <= 0) || (transferredSum > (Number(selectedAccountInfo[1]) || 0)) ){
+      setError('Invalid transferred sum');
+      return false;
+    }
+    return true;
+  };
+  const performPayment:  React.FormEventHandler<HTMLFormElement> = async (event) => {
+    event.preventDefault();
+    if (!validate()) {
+      return;
+    }
+    setLoading(true);
+    setSuccess(undefined);
+    setError(undefined);
+
+
+    const { error } = await supabase.rpc('transfer_money', {
+      receiver_id: receiversAccount,
+      sender_id: selectedAccount,
+      transfer_amount: transferredSum
+    });
+    setLoading(false);
+    if (error) {
+      setError(error.message);
+    } else {
+      setQrScannerShown(false);
+      setReceiversAccount('');
+      setSuccess('Money transferred');
+    }
   };
 
   const toggleQrScannerShown = () => {
-    setQrScannerShown(isShown => !isShown);
+    setQrScannerShown((isShown) => !isShown);
   };
 
   const onScanValues = (value: string) => {
@@ -37,7 +80,7 @@ export const PaymentForm = (props: PaymentFormProps) => {
       const parsed = JSON.parse(value);
       if (typeof parsed === 'object') {
         if (parsed.number && typeof parsed.number === 'string') {
-          setSendersAccount(parsed.number);
+          setReceiversAccount(parsed.number);
         }
       }
     } catch (error) {
@@ -50,8 +93,23 @@ export const PaymentForm = (props: PaymentFormProps) => {
     setSelectedAccountInfo([account.currency.code, account.amount.toString(), account.name]);
   }, [selectedAccount]);
 
+
+  if (success) {
+    return (
+      <form
+        className="w-2/3 max-md:w-full flex flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow ">
+        <SuccessBadge title="Transaction success: " text={success}/>
+        <Link href="/home"><Button type="button" text="Go home" appearance="light"/></Link>
+      </form>
+    );
+  }
+
   return (
-    <form className="w-2/3 max-md:w-full flex flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow ">
+    <form
+      className={clsx('w-2/3 max-md:w-full flex flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow', {
+        'opacity-30 pointer-events-none cursor-default': loading
+      })}
+    onSubmit={performPayment}>
       <div className="flex flex-row gap-x-4 w-full max-md:flex-col-reverse max-md:gap-y-1">
         <Select
           values={props.availableAccounts.map((i) => i.number)}
@@ -64,11 +122,17 @@ export const PaymentForm = (props: PaymentFormProps) => {
           {selectedAccountInfo[2] && <span className="text-md">Associated title: {selectedAccountInfo[2]}</span>}
         </div>
       </div>
-      <LabeledInput label="Sender's account number" type="text" onChange={setSendersAccount} value={sendersAccount} required />
-      <Button type="button" text={!qrScannerShown ? 'Use QR instead' : 'Close QR scanner'} appearance="dark" onClick={toggleQrScannerShown} />
+      <LabeledInput label="Sender's account number" type="text" onChange={setReceiversAccount} value={receiversAccount} required />
+      <Button
+        type="button"
+        text={!qrScannerShown ? 'Use QR instead' : 'Close QR scanner'}
+        appearance="dark"
+        onClick={toggleQrScannerShown}
+      />
       {qrScannerShown && <QrScannerComponent onScan={onScanValues} onClose={() => setQrScannerShown(false)} />}
-      <LabeledInput label="Sum to transfer" type="number" onChange={setTransferedSum} value={transferedSum} required />
-      <Button type="submit" text="Transfer money" appearance="ordinary" onClick={performPayment} />
+      <LabeledInput label="Sum to transfer" type="number" onChange={setTransferredSum} value={transferredSum} required />
+      <Button type="submit" text={loading ? <LoadingSpinner/> : 'Transfer money'} appearance="ordinary" disabaled={loading}/>
+      {error && <ErrorBadge title="Transaction fail: " text={error}/> }
     </form>
   );
 };

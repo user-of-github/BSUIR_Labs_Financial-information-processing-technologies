@@ -51,7 +51,7 @@ export const ProfileDetails = (props: ProfileDetailsProps): JSX.Element => (
             <dd className={textContentClassName}>{props.clientFrom}</dd>
           </div>
           <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6 items-center">
-            <dt className={textHeadingClassName}>Your money accounts</dt>
+            <dt className={textHeadingClassName}>Your virtual cards (money accounts)</dt>
             <dd className="mt-1 text-sm text-gray-900 sm:mt-0 sm:col-span-2">
               <Link href="/account/moneyAccounts" className="inline-flex items-center text-blue-600 hover:underline">
                 View

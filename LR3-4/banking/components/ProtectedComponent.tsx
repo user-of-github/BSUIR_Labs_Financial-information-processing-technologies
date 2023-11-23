@@ -7,7 +7,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export const ProtectedComponent = async ({ children }: React.PropsWithChildren<any>) => {
   cookies().getAll();
-const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerComponentClient({ cookies });
   const {
     data: { session }
   } = await supabase.auth.getSession();

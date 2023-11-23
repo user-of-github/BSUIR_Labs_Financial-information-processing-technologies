@@ -1,6 +1,7 @@
 import { CurrencyTariff } from './types';
 
-export const createCurrencyConversionMap = (data: CurrencyTariff[]): Map<string, Map<string, number>> => {
+export type ConversionRules = Map<string, Map<string, number>>;
+export const createCurrencyConversionMap = (data: CurrencyTariff[]): ConversionRules => {
   const response = new Map<string, Map<string, number>>();
 
   const allCurrenciesSet = new Set<string>(data.map((item) => item.from.short_code_title));

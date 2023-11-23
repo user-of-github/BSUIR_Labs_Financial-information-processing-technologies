@@ -28,7 +28,6 @@ export const Input = <InputValueType extends SupportedInputValueType>({
   required,
   pattern,
   min
-
 }: InputProps<InputValueType>): JSX.Element => {
   return (
     <input

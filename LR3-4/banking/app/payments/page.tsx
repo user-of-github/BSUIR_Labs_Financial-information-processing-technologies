@@ -3,8 +3,8 @@ import { cookies } from 'next/headers';
 import { PaymentForm } from '@/components/PaymentForm';
 import { ColoredHeading } from '@/components/UI/ColoredHeading';
 import { CurrencyTariff, DBResponse, MoneyAccount } from '@/core/types';
+import { ConversionRules, createCurrencyConversionMap } from '@/core/utils';
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-import { createCurrencyConversionMap } from '@/core/utils';
 
 export default async function PaymentsPage() {
   cookies().getAll();
@@ -14,12 +14,12 @@ export default async function PaymentsPage() {
     .from('CurrencyTariffs')
     .select('coefficient, to(short_code_title), from(short_code_title)')) as DBResponse<CurrencyTariff[]>;
 
-  const conversionRules = createCurrencyConversionMap(data);
+  const conversionRules: ConversionRules = createCurrencyConversionMap(data);
 
   return (
     <>
       <ColoredHeading headingLevel={2} ordinaryText=" page" swap coloredText="Payments " />
-      <PaymentForm availableAccounts={myAccounts.data as MoneyAccount[]} />
+      <PaymentForm availableAccounts={myAccounts.data as MoneyAccount[]} tariffs={conversionRules}/>
     </>
   );
 }

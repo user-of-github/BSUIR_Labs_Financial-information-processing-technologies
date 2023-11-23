@@ -41,7 +41,9 @@ export const MoneyAccountData = ({ account }: { account: MoneyAccount }) => {
 
         <div className="py-3 sm:py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
           <dt className={textHeadingClassName}>Available amount</dt>
-          <dd className={textContentClassName}>{account.amount} {account.currency.code}</dd>
+          <dd className={textContentClassName}>
+            {account.amount} {account.currency.code}
+          </dd>
         </div>
       </div>
 

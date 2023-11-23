@@ -5,7 +5,7 @@ import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default async function CurrencyRates(): Promise<JSX.Element> {
   cookies().getAll();
-const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerComponentClient({ cookies });
 
   const { data } = (await supabase
     .from('CurrencyBuySell')

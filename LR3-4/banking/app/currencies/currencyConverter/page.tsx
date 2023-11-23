@@ -2,12 +2,12 @@ import { cookies } from 'next/headers';
 
 import { CurrencyConverterForm } from '@/components/CurrencyConverterForm';
 import { CurrencyTariff, DBResponse } from '@/core/types';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 import { createCurrencyConversionMap } from '@/core/utils';
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default async function CurrencyConverter(): Promise<JSX.Element> {
   cookies().getAll();
-const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerComponentClient({ cookies });
   const { data } = (await supabase
     .from('CurrencyTariffs')
     .select('coefficient, to(short_code_title), from(short_code_title)')) as DBResponse<CurrencyTariff[]>;

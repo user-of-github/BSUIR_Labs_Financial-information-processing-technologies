@@ -12,7 +12,7 @@ interface NavigationProps {
 
 export const Navigation = async (props: NavigationProps) => {
   cookies().getAll();
-const supabase = createServerComponentClient({ cookies });
+  const supabase = createServerComponentClient({ cookies });
   const data = await supabase.auth.getSession();
   const session = data?.data?.session;
 

@@ -9,7 +9,7 @@ export const metadata = {
 export default function MoneyAccountsListLayout({ children }: React.PropsWithChildren) {
   return (
     <>
-      <ColoredHeading headingLevel={1} coloredText="Money accounts" className="mb-4" />
+      <ColoredHeading headingLevel={1} coloredText="Virtual cards (Money accounts)" className="mb-4" />
       {children}
     </>
   );
