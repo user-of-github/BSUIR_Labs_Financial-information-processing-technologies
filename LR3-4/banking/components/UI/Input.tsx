@@ -15,6 +15,7 @@ interface InputProps<InputValueType extends SupportedInputValueType> {
   required?: boolean;
   pattern?: string;
   min?: number;
+  max?: number;
 }
 
 export const Input = <InputValueType extends SupportedInputValueType>({
@@ -27,7 +28,8 @@ export const Input = <InputValueType extends SupportedInputValueType>({
   maxLength,
   required,
   pattern,
-  min
+  min,
+  max
 }: InputProps<InputValueType>): JSX.Element => {
   return (
     <input
@@ -47,6 +49,7 @@ export const Input = <InputValueType extends SupportedInputValueType>({
       pattern={pattern}
       autoComplete="on"
       min={min}
+      max={max}
     />
   );
 };

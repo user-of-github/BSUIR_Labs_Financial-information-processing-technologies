@@ -9,10 +9,10 @@ import { Button } from '@/components/UI/Button';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { LoadingSpinner } from '@/components/UI/LoadingSpinner';
 import { ErrorBadge, InfoBadge } from '@/components/UI/StateBadge';
+import { emailValidator, inputFieldValidator, passportIdValidator, phoneValidator, validate } from '@/core/validators';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import clsx from 'clsx';
 import { createTransport } from 'nodemailer';
-import { emailValidator, inputFieldValidator, passportIdValidator, phoneValidator, validate } from '@/core/validators';
 
 export default function SignUpPage(): JSX.Element {
   const supabase = createClientComponentClient();
@@ -81,8 +81,15 @@ export default function SignUpPage(): JSX.Element {
         autoSave="on"
       >
         {error && <ErrorBadge title="Error" text={error} className="absolute -right-1.5 -top-[20px]" />}
-        <LabeledInput label="Email" value={email} type="email" onChange={setEmail} placeholder="example@email.com" />
-        <LabeledInput label="Password" value={password} type="password" onChange={setPassword} />
+        <LabeledInput
+          label="Email"
+          value={email}
+          type="email"
+          onChange={setEmail}
+          placeholder="example@email.com"
+          maxLength={40}
+        />
+        <LabeledInput label="Password" value={password} type="password" onChange={setPassword} maxLength={40} />
         <div className="flex flex-row items-center">
           <Button type="submit" appearance="light" className="mt-5" text="Log in" />
           {loading && <LoadingSpinner />}

@@ -25,7 +25,7 @@ export const CreditCalculator = (props: CreditCalculatorProps) => {
   return (
     <div className="flex max-md:flex-col max-md:gap-y-6 w-4/5 max-md:w-full gap-x-7 rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
       <div className="flex flex-col gap-y-5 w-full">
-        <LabeledInput label="Credit sum, BYN" onChange={setCreditSum} value={creditSum} type="number" min={1} />
+        <LabeledInput label="Credit sum, BYN" onChange={setCreditSum} value={creditSum} type="number" min={1} max={100000} />
         <RangeInput
           dimensionTitle="year(s)"
           min={1}

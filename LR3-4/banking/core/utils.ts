@@ -21,7 +21,7 @@ export const getMonthlyPayment = (creditSum: number, creditTermYears: number, cr
   const monthsInYear = 12;
   const percent = creditPercent / monthsInYear / 100;
   // https://journal.tinkoff.ru/guide/credit-payment/
-  const powDegree = (creditTermYears * monthsInYear);
+  const powDegree = creditTermYears * monthsInYear;
   const inPow = (1 + percent) ** powDegree;
   const annuityRatio = (percent * inPow) / (inPow - 1);
   return creditSum * annuityRatio;

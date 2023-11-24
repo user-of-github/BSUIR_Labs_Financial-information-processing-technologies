@@ -1,12 +1,13 @@
-;
 import isEmail from 'is-email';
 
-type ValidationResult = {
-  status: true;
-} | {
-  status: false;
-  error: string;
-};
+type ValidationResult =
+  | {
+      status: true;
+    }
+  | {
+      status: false;
+      error: string;
+    };
 
 type ValidatorFunction<ValueType> = (value: ValueType) => ValidationResult;
 
@@ -53,7 +54,6 @@ export const emailValidator: ValidatorFunction<string> = (value: string) => {
   }
 };
 
-
 export const validate = (pairs: ValidationPair<any>[]): ValidationResult => {
   for (const pair of pairs) {
     const [value, validator] = pair;
@@ -69,13 +69,13 @@ export const validate = (pairs: ValidationPair<any>[]): ValidationResult => {
   };
 };
 
-export const phoneValidator: ValidatorFunction<string> = val => {
+export const phoneValidator: ValidatorFunction<string> = (val) => {
   const value = val.replaceAll(' ', '');
   const DIGITS = '0123456789';
   const SIGNS = '-+';
 
-  const res = Array.from(value).every(symbol => {
-    return DIGITS.includes(symbol) || SIGNS.includes(symbol)
+  const res = Array.from(value).every((symbol) => {
+    return DIGITS.includes(symbol) || SIGNS.includes(symbol);
   });
 
   if (res) {

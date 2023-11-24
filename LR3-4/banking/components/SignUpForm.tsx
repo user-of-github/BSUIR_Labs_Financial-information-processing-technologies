@@ -5,8 +5,8 @@ import React from 'react';
 import { Button } from '@/components/UI/Button';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { ErrorBadge, SuccessBadge } from '@/components/UI/StateBadge';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { emailValidator, inputFieldValidator, passportIdValidator, phoneValidator, validate } from '@/core/validators';
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export const SignUpForm = (): JSX.Element => {
   const supabase = createClientComponentClient();
@@ -85,6 +85,7 @@ export const SignUpForm = (): JSX.Element => {
         onChange={setFirstName}
         placeholder="What is your name ?"
         pattern="[A-Za-z А-Яа-я\-]{4, }"
+        maxLength={20}
       />
       <LabeledInput
         required
@@ -93,6 +94,7 @@ export const SignUpForm = (): JSX.Element => {
         type="text"
         onChange={setLastName}
         placeholder="And now surname"
+        maxLength={20}
       />
       <LabeledInput
         required
@@ -101,6 +103,7 @@ export const SignUpForm = (): JSX.Element => {
         type="text"
         onChange={setMiddleName}
         placeholder="Middlename"
+        maxLength={20}
       />
       <LabeledInput
         required
@@ -109,9 +112,17 @@ export const SignUpForm = (): JSX.Element => {
         type="text"
         onChange={setPassportId}
         placeholder="MR1234567"
-        maxLength={10}
+        maxLength={9}
       />
-      <LabeledInput required label="Mobile phone" value={phone} type="tel" onChange={setPhone} placeholder="+375..." />
+      <LabeledInput
+        maxLength={20}
+        required
+        label="Mobile phone"
+        value={phone}
+        type="tel"
+        onChange={setPhone}
+        placeholder="+375..."
+      />
       <LabeledInput
         required
         label="Email"
@@ -119,8 +130,9 @@ export const SignUpForm = (): JSX.Element => {
         type="email"
         onChange={setEmail}
         placeholder="your.real.email@email.com"
+        maxLength={40}
       />
-      <LabeledInput required label="Password" value={password} type="password" onChange={setPassword} />
+      <LabeledInput maxLength={25} required label="Password" value={password} type="password" onChange={setPassword} />
 
       <Button type="submit" appearance="purple" className="mt-5" text="Verify your email and register" />
     </form>
