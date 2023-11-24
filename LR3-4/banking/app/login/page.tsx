@@ -33,7 +33,6 @@ export default function SignUpPage(): JSX.Element {
       current_email: email
     });
     setLoading(false);
-    console.log(isPassword);
 
     if (isPassword.error || !isPassword.data) {
       setError('Invalid login or password');

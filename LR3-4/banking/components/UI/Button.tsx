@@ -6,12 +6,12 @@ interface ButtonProps {
   onClick?: () => void;
   appearance: keyof typeof buttonStyles;
   className?: string;
-  disabaled?: boolean;
+  disabled?: boolean;
 }
 
-export const Button = ({ type, text, onClick, appearance, className, disbaled }: ButtonProps): JSX.Element => {
+export const Button = ({ type, text, onClick, appearance, className, disabled }: ButtonProps): JSX.Element => {
   return (
-    <button type={type} onClick={onClick} className={clsx(buttonStyles[appearance], animated, className)} disabled={disbaled}>
+    <button type={type} onClick={onClick} className={clsx(buttonStyles[appearance], animated, className)} disabled={disabled}>
       {text}
     </button>
   );

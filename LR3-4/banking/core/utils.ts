@@ -16,3 +16,13 @@ export const createCurrencyConversionMap = (data: CurrencyTariff[]): ConversionR
 
   return response;
 };
+
+
+export const getMonthlyPayment = (creditSum: number, creditTermYears: number, creditPercent: number): number => {
+
+  const monthsInYear = 12;
+  const percent = (creditPercent / monthsInYear) / 100;
+  console.log(percent)
+  const annuityRatio = ((percent * ((1 + percent)) ** (creditTermYears * monthsInYear))) / ((1 + percent) ** (creditTermYears * monthsInYear) -1);
+  return creditSum * annuityRatio;
+};

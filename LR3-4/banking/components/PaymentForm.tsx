@@ -138,7 +138,7 @@ export const PaymentForm = (props: PaymentFormProps) => {
       />
       {qrScannerShown && <QrScannerComponent onScan={onScanValues} onClose={() => setQrScannerShown(false)} />}
       <LabeledInput label="Sum to transfer" type="number" onChange={setTransferredSum} value={transferredSum} required />
-      <Button type="submit" text={loading ? <LoadingSpinner /> : 'Transfer money'} appearance="ordinary" disabaled={loading} />
+      <Button type="submit" text={loading ? <LoadingSpinner /> : 'Transfer money'} appearance="ordinary" disabled={loading} />
       {error && <ErrorBadge title="Transaction fail: " text={error} />}
     </form>
   );
