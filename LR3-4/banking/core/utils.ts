@@ -17,12 +17,12 @@ export const createCurrencyConversionMap = (data: CurrencyTariff[]): ConversionR
   return response;
 };
 
-
 export const getMonthlyPayment = (creditSum: number, creditTermYears: number, creditPercent: number): number => {
-
   const monthsInYear = 12;
-  const percent = (creditPercent / monthsInYear) / 100;
-  console.log(percent)
-  const annuityRatio = ((percent * ((1 + percent)) ** (creditTermYears * monthsInYear))) / ((1 + percent) ** (creditTermYears * monthsInYear) -1);
+  const percent = creditPercent / monthsInYear / 100;
+  // https://journal.tinkoff.ru/guide/credit-payment/
+  const powDegree = (creditTermYears * monthsInYear);
+  const inPow = (1 + percent) ** powDegree;
+  const annuityRatio = (percent * inPow) / (inPow - 1);
   return creditSum * annuityRatio;
 };

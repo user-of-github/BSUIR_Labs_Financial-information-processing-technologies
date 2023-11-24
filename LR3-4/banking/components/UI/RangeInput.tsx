@@ -10,8 +10,12 @@ interface RangeInputProps {
 export const RangeInput = (props: RangeInputProps): JSX.Element => {
   return (
     <div className="flex flex-col w-full gap-y-1">
-      <label htmlFor='min-and-max-range-slider-usage' className='sr-only'>{props.label}</label>
-      <input type='range' className='w-full bg-transparent cursor-pointer appearance-none disabled:opacity-50 disabled:pointer-events-none focus:outline-none
+      <label htmlFor="min-and-max-range-slider-usage" className="sr-only">
+        {props.label}
+      </label>
+      <input
+        type="range"
+        className="w-full bg-transparent cursor-pointer appearance-none disabled:opacity-50 disabled:pointer-events-none focus:outline-none
 [&::-webkit-slider-thumb]:w-2.5
 [&::-webkit-slider-thumb]:h-2.5
 [&::-webkit-slider-thumb]:-mt-0.5
@@ -44,13 +48,15 @@ export const RangeInput = (props: RangeInputProps): JSX.Element => {
 [&::-moz-range-track]:w-full
 [&::-moz-range-track]:h-2
 [&::-moz-range-track]:bg-gray-100
-[&::-moz-range-track]:rounded-full'
-             value={props.value}
-             min={props.min}
-             max={props.max}
-             onChange={event => props.onChange(Number(event.currentTarget.value))}
+[&::-moz-range-track]:rounded-full"
+        value={props.value}
+        min={props.min}
+        max={props.max}
+        onChange={(event) => props.onChange(Number(event.currentTarget.value))}
       />
-      <span>{props.value} {props.dimensionTitle}</span>
+      <span>
+        {props.value} {props.dimensionTitle}
+      </span>
     </div>
   );
 };

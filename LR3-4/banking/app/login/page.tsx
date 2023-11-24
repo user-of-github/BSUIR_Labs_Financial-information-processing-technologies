@@ -12,6 +12,7 @@ import { ErrorBadge, InfoBadge } from '@/components/UI/StateBadge';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import clsx from 'clsx';
 import { createTransport } from 'nodemailer';
+import { emailValidator, inputFieldValidator, passportIdValidator, phoneValidator, validate } from '@/core/validators';
 
 export default function SignUpPage(): JSX.Element {
   const supabase = createClientComponentClient();
@@ -28,6 +29,16 @@ export default function SignUpPage(): JSX.Element {
     setError(undefined);
     setLoading(true);
 
+    const validation = validate([
+      [email, inputFieldValidator, 'email'],
+      [password, inputFieldValidator, 'password']
+    ]);
+
+    if (!validation.status) {
+      setError(validation.error);
+      return;
+    }
+
     const isPassword = await supabase.rpc('check_if_password_correct', {
       current_plain_password: password,
       current_email: email
@@ -35,7 +46,7 @@ export default function SignUpPage(): JSX.Element {
     setLoading(false);
 
     if (isPassword.error || !isPassword.data) {
-      setError('Invalid login or password');
+      setError('Invalid login or password (do not match or do not exist at all)');
       return;
     }
 

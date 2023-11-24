@@ -17,6 +17,7 @@
     "@supabase/supabase-js": "^2.38.4",
     "@yudiel/react-qr-scanner": "^1.2.3",
     "clsx": "^2.0.0",
+    "is-email": "^1.0.2",
     "next": "14.0.1",
     "nodemailer": "^6.9.7",
     "prettier": "^3.1.0",
@@ -26,6 +27,7 @@
   },
   "devDependencies": {
     "@trivago/prettier-plugin-sort-imports": "^4.3.0",
+    "@types/is-email": "^1.0.0",
     "@types/node": "^20",
     "@types/nodemailer": "^6.4.14",
     "@types/react": "^18",

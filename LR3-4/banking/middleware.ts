@@ -13,7 +13,10 @@ export async function middleware(req: NextRequest) {
   if (req.nextUrl.pathname !== '/signOut') {
     const data = await supabase.auth.getSession();
 
-    if (!data.data.session && PROTECTED_ROUTES.includes(req.nextUrl.pathname)) {
+    if (
+      !data.data.session &&
+      (PROTECTED_ROUTES.includes(req.nextUrl.pathname) || PROTECTED_ROUTES.some((r) => req.nextUrl.pathname.includes(r)))
+    ) {
       return NextResponse.redirect(new URL('/login', req.url));
     }
     if (data.data.session && OPPOSITE_TO_PROTECTED_ROUTES.includes(req.nextUrl.pathname)) {

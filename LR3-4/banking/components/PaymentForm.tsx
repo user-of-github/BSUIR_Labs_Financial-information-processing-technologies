@@ -18,7 +18,6 @@ import clsx from 'clsx';
 
 interface PaymentFormProps {
   availableAccounts: MoneyAccount[];
-  tariffs: ConversionRules;
 }
 export const PaymentForm = (props: PaymentFormProps) => {
   const supabase = createClientComponentClient();

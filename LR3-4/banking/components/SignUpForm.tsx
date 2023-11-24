@@ -6,6 +6,7 @@ import { Button } from '@/components/UI/Button';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { ErrorBadge, SuccessBadge } from '@/components/UI/StateBadge';
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+import { emailValidator, inputFieldValidator, passportIdValidator, phoneValidator, validate } from '@/core/validators';
 
 export const SignUpForm = (): JSX.Element => {
   const supabase = createClientComponentClient();
@@ -24,6 +25,20 @@ export const SignUpForm = (): JSX.Element => {
     event.preventDefault();
     setError(undefined);
     setSuccess(undefined);
+
+    const validation = validate([
+      [firstName, inputFieldValidator, 'first name'],
+      [middleName, inputFieldValidator, 'middle name'],
+      [lastName, inputFieldValidator, 'last name'],
+      [passportId, passportIdValidator, 'passport ID'],
+      [email, emailValidator, 'email'],
+      [phone, phoneValidator, 'phone number']
+    ]);
+
+    if (!validation.status) {
+      setError(validation.error);
+      return;
+    }
 
     // let's check if email exists already
 
