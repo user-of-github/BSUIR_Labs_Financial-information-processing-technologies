@@ -4,9 +4,10 @@ import React from 'react';
 
 import { useRouter } from 'next/navigation';
 
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+
 import { LoadingSpinner } from '@/components/UI/LoadingSpinner';
 import { InfoBadge } from '@/components/UI/StateBadge';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default function SignOutPage() {
   const supabase = createClientComponentClient();

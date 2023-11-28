@@ -1,9 +1,10 @@
 import { cookies } from 'next/headers';
 import { redirect } from 'next/navigation';
 
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+
 import { ProfileDetails } from '@/components/ProfileDetails';
 import { BaseUser, UserMetaData } from '@/core/types';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default async function AccountPage() {
   cookies().getAll();

@@ -2,11 +2,14 @@
 
 import React from 'react';
 
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+
 import { Button } from '@/components/UI/Button';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { ErrorBadge, SuccessBadge } from '@/components/UI/StateBadge';
 import { emailValidator, inputFieldValidator, passportIdValidator, phoneValidator, validate } from '@/core/validators';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+
+import clsx from 'clsx';
 
 export const SignUpForm = (): JSX.Element => {
   const supabase = createClientComponentClient();
@@ -20,9 +23,11 @@ export const SignUpForm = (): JSX.Element => {
   const [password, setPassword] = React.useState<string>('');
   const [error, setError] = React.useState<string | undefined>();
   const [success, setSuccess] = React.useState<string | undefined>();
+  const [loading, setLoading] = React.useState<boolean>(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
+
     setError(undefined);
     setSuccess(undefined);
 
@@ -40,8 +45,7 @@ export const SignUpForm = (): JSX.Element => {
       return;
     }
 
-    // let's check if email exists already
-
+    setLoading(true);
     const response = await supabase.auth.signUp({
       email,
       password,
@@ -56,27 +60,30 @@ export const SignUpForm = (): JSX.Element => {
         }
       }
     });
+    setLoading(false);
 
     if (response.error) {
       setError(`${response.error.message}`);
     } else if (response.data) {
       setSuccess(
-        'Congratulations. Go to your inbox, verify email and start being our client ! If this email already associated with some account, you already can login'
+        ' Congratulations. Go to your inbox, verify email and start being our client ! If this email already associated with some account, you already can login'
       );
     }
   };
 
   if (success) {
-    return <SuccessBadge title="SUCCESS" text={success} />;
+    return <SuccessBadge title="SUCCESS " text={success} />;
   }
 
   return (
     <form
-      className="mr-auto flex w-3/5 flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 max-md:w-full"
+      className={clsx(
+        'mr-auto flex w-3/5 flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 max-md:w-full',
+        { 'opacity-30 pointer-events-none cursor-default': loading }
+      )}
       onSubmit={handleSubmit}
       autoComplete="on"
     >
-      {error && <ErrorBadge title="ERROR" text={error} />}
       <LabeledInput
         required
         label="First name"
@@ -98,7 +105,7 @@ export const SignUpForm = (): JSX.Element => {
       />
       <LabeledInput
         required
-        label="Middle name (if there is)"
+        label="Middle name"
         value={middleName}
         type="text"
         onChange={setMiddleName}
@@ -134,7 +141,8 @@ export const SignUpForm = (): JSX.Element => {
       />
       <LabeledInput maxLength={25} required label="Password" value={password} type="password" onChange={setPassword} />
 
-      <Button type="submit" appearance="purple" className="mt-5" text="Verify your email and register" />
+      <Button disabled={loading} type="submit" appearance="purple" className="mt-5" text="Verify your email and register" />
+      {error && <ErrorBadge title="ERROR" text={error} />}
     </form>
   );
 };

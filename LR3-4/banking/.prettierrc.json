@@ -6,7 +6,16 @@
   "jsxSingleQuote": false,
   "printWidth": 130,
   "plugins": ["prettier-plugin-tailwindcss", "prettier-plugin-organize-imports", "@trivago/prettier-plugin-sort-imports"],
-  "importOrder": ["react", "^next/(.*)$", "<THIRD_PARTY_MODULES>", "^@core/(.*)$", "^@components/(.*)$", "^[./]"],
+  "importOrder": [
+    "react",
+    "^next/(.*)$",
+    "^@supabase(.*)$",
+    "<THIRD_PARTY_MODULES>",
+    "^clsx$",
+    "^@core/(.*)$",
+    "^@components/(.*)$",
+    "^[./]"
+  ],
   "importOrderSeparation": true,
   "importOrderSortSpecifiers": true
 }

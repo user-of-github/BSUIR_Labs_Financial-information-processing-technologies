@@ -1,4 +1,5 @@
 import isEmail from 'is-email';
+import phone from 'phone';
 
 type ValidationResult =
   | {
@@ -15,7 +16,7 @@ type ValidationPair<ValueType> = [ValueType, ValidatorFunction<ValueType>, strin
 
 export const inputFieldValidator: ValidatorFunction<string> = (value: string) => {
   const NAME_FIELD_MIN_LENGTH = 3;
-  if (value.trim().length < NAME_FIELD_MIN_LENGTH) {
+  if (value.trim().trimStart().trimEnd().length < NAME_FIELD_MIN_LENGTH) {
     return {
       status: false,
       error: `Too short input`
@@ -30,27 +31,17 @@ export const inputFieldValidator: ValidatorFunction<string> = (value: string) =>
 export const passportIdValidator: ValidatorFunction<string> = (value: string) => {
   const PASSPORT_ID_LENGTH = 9;
   if (value.trim().length !== PASSPORT_ID_LENGTH) {
-    return {
-      status: false,
-      error: 'Too short password'
-    };
+    return { status: false, error: 'Passport ID must contain exactly 9 values, ex.: MP1234567' };
   } else {
-    return {
-      status: true
-    };
+    return { status: true };
   }
 };
 
 export const emailValidator: ValidatorFunction<string> = (value: string) => {
   if (isEmail(value)) {
-    return {
-      status: true
-    };
+    return { status: true };
   } else {
-    return {
-      status: false,
-      error: 'Invalid email'
-    };
+    return { status: false, error: 'Invalid email' };
   }
 };
 
@@ -70,22 +61,10 @@ export const validate = (pairs: ValidationPair<any>[]): ValidationResult => {
 };
 
 export const phoneValidator: ValidatorFunction<string> = (val) => {
-  const value = val.replaceAll(' ', '');
-  const DIGITS = '0123456789';
-  const SIGNS = '-+';
-
-  const res = Array.from(value).every((symbol) => {
-    return DIGITS.includes(symbol) || SIGNS.includes(symbol);
-  });
-
-  if (res) {
-    return {
-      status: true
-    };
+  const processedPhone = phone(val);
+  if (!processedPhone.isValid) {
+    return { status: false, error: 'Provide valid phone in international format' };
   } else {
-    return {
-      status: false,
-      error: 'Invalid phone number'
-    };
+    return { status: true };
   }
 };

@@ -14,7 +14,7 @@ export const MoneyAccountRowCard = (props: MoneyAccountRowCardProps) => {
         {props.number.slice(0, 10) + new Array(props.number.length - 10).fill('*').join('') + props.number.slice(20)}
       </h5>
       <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">
-        <InfoBadge title={props.currency.code} className="mr-auto w-auto max-w-[100px]" />
+        <InfoBadge title={props.currency.code} className="mr-auto w-fit max-w-[100px]" />
       </p>
       <Link href={`/account/moneyAccounts/${props.number}`} className="inline-flex items-center text-blue-600 hover:underline">
         See this money account

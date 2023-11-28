@@ -6,6 +6,7 @@ import { Button } from '@/components/UI/Button';
 import { ColoredHeading } from '@/components/UI/ColoredHeading';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { RangeInput } from '@/components/UI/RangeInput';
+import { InfoBadge } from '@/components/UI/StateBadge';
 import { getMonthlyPayment } from '@/core/utils';
 
 interface CreditCalculatorProps {
@@ -19,13 +20,20 @@ export const CreditCalculator = (props: CreditCalculatorProps) => {
   React.useEffect(() => {
     const newMonthlyPayment = getMonthlyPayment(creditSum, creditTerm, props.percent);
     setMonthlyPayment(newMonthlyPayment);
-    console.log(newMonthlyPayment);
   }, [creditSum, creditTerm]);
 
   return (
     <div className="flex max-md:flex-col max-md:gap-y-6 w-4/5 max-md:w-full gap-x-7 rounded-lg bg-white p-6 shadow-[0_2px_15px_-3px_rgba(0,0,0,0.07),0_10px_20px_-2px_rgba(0,0,0,0.04)] dark:bg-neutral-700">
       <div className="flex flex-col gap-y-5 w-full">
-        <LabeledInput label="Credit sum, BYN" onChange={setCreditSum} value={creditSum} type="number" min={1} max={100000} />
+        <LabeledInput
+          label="Credit sum, BYN"
+          onChange={setCreditSum}
+          value={creditSum}
+          type="number"
+          min={1}
+          max={100000}
+          maxLength={10}
+        />
         <RangeInput
           dimensionTitle="year(s)"
           min={1}
@@ -67,7 +75,7 @@ export const CreditCalculator = (props: CreditCalculatorProps) => {
           </div>
         </div>
 
-        <Button type="button" text="To get money request to the nearest office" appearance="purple" disabled className="mt-4" />
+        <InfoBadge title="ⓘ To get money request to the nearest office" className="mt-4" />
       </div>
     </div>
   );

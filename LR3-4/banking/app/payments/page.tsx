@@ -1,10 +1,11 @@
 import { cookies } from 'next/headers';
 
+import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
+
 import { PaymentForm } from '@/components/PaymentForm';
 import { ColoredHeading } from '@/components/UI/ColoredHeading';
 import { CurrencyTariff, DBResponse, MoneyAccount } from '@/core/types';
 import { ConversionRules, createCurrencyConversionMap } from '@/core/utils';
-import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
 
 export default async function PaymentsPage() {
   cookies().getAll();

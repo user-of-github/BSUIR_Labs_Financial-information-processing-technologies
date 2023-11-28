@@ -5,14 +5,16 @@ import React from 'react';
 import Link from 'next/link';
 import { redirect, useRouter } from 'next/navigation';
 
+import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
+
 import { Button } from '@/components/UI/Button';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { LoadingSpinner } from '@/components/UI/LoadingSpinner';
 import { ErrorBadge, InfoBadge } from '@/components/UI/StateBadge';
 import { emailValidator, inputFieldValidator, passportIdValidator, phoneValidator, validate } from '@/core/validators';
-import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-import clsx from 'clsx';
 import { createTransport } from 'nodemailer';
+
+import clsx from 'clsx';
 
 export default function SignUpPage(): JSX.Element {
   const supabase = createClientComponentClient();
@@ -21,7 +23,6 @@ export default function SignUpPage(): JSX.Element {
   const [email, setEmail] = React.useState<string>('');
   const [password, setPassword] = React.useState<string>('');
   const [error, setError] = React.useState<string | undefined>(undefined);
-  const [letterSent, setLetterSent] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -43,9 +44,9 @@ export default function SignUpPage(): JSX.Element {
       current_plain_password: password,
       current_email: email
     });
-    setLoading(false);
 
     if (isPassword.error || !isPassword.data) {
+      setLoading(false);
       setError('Invalid login or password (do not match or do not exist at all)');
       return;
     }
@@ -70,11 +71,10 @@ export default function SignUpPage(): JSX.Element {
 
   return (
     <>
-      {letterSent && <InfoBadge title="2 Factor auth: " text="Letter with confirmation link sent to your email" />}
       <form
         className={clsx(
           'relative mr-auto flex w-3/5 flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 max-md:w-full',
-          { 'pointer-events-none opacity-30': letterSent }
+          { 'opacity-30 pointer-events-none cursor-default': loading }
         )}
         onSubmit={handleSubmit}
         autoComplete="on"
@@ -91,7 +91,7 @@ export default function SignUpPage(): JSX.Element {
         />
         <LabeledInput label="Password" value={password} type="password" onChange={setPassword} maxLength={40} />
         <div className="flex flex-row items-center">
-          <Button type="submit" appearance="light" className="mt-5" text="Log in" />
+          <Button type="submit" appearance="light" className="mt-5" text="Log in" disabled={loading} />
           {loading && <LoadingSpinner />}
         </div>
       </form>
