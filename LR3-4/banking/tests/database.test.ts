@@ -1,6 +1,6 @@
 import { SupabaseClient, createClient } from '@supabase/supabase-js';
 import { getAccountData, INITIAL_ACCOUNT_AMOUNT, invalidTransferAmounts, user1, user2, validTransferAmount } from './mocks';
-import { log } from 'util';
+
 
 describe('Supabase logic', () => {
   let Supabase: SupabaseClient, SupabaseAdmin: SupabaseClient;
@@ -119,6 +119,28 @@ describe('Supabase logic', () => {
 
       logOutResult = await Supabase.auth.signOut();
       expect(logOutResult.error).toBe(null);
+    });
+  });
+
+  describe('Authorization', () => {
+    test('Unable to authorize with wrong credentials', async () => {
+      let loginResult = await Supabase.auth.signInWithPassword({
+        email: user1.email,
+        password: user1.password + 'invalid-password'
+      });
+      expect(loginResult.error).not.toBe(null);
+
+      loginResult = await Supabase.auth.signInWithPassword({
+        email: user1.email + 'm',
+        password: user1.password
+      });
+      expect(loginResult.error).not.toBe(null);
+
+      loginResult = await Supabase.auth.signInWithPassword({
+        email: user1.email,
+        password: user2.password
+      });
+      expect(loginResult.error).not.toBe(null);
     });
   });
 
