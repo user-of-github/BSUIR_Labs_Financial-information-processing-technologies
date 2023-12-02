@@ -3,7 +3,7 @@ name: Test Online Banking app
 on: [push]
 
 jobs:
-  runtest:
+  Testing:
 
     runs-on: ubuntu-latest
 
