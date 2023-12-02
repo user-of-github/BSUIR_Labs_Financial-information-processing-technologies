@@ -139,7 +139,7 @@ export const SignUpForm = (): JSX.Element => {
       <LabeledInput maxLength={25} required label="Password" value={password} type="password" onChange={setPassword} />
 
       <Button disabled={loading} type="submit" appearance="purple" className="mt-5" text="Verify your email and register" />
-      {error && <ErrorBadge title="ERROR" text={error} />}
+      {error && <ErrorBadge title="ERROR " text={error} />}
     </form>
   );
 };
