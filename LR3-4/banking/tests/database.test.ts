@@ -1,6 +1,6 @@
 import { SupabaseClient, createClient } from '@supabase/supabase-js';
-import { getAccountData, user1, user2 } from './mocks';
 
+import { getAccountData, user1, user2 } from './mocks';
 
 describe('Supabase logic', () => {
   let Supabase: SupabaseClient;
@@ -29,7 +29,7 @@ describe('Supabase logic', () => {
   });
 
   describe('Sign up logic worked correctly', () => {
-    test.each([user1, user2])('Logs in successfully, checks trigger for PROFILES table worked',async user => {
+    test.each([user1, user2])('Logs in successfully, checks trigger for PROFILES table worked', async (user) => {
       const logInResult = await Supabase.auth.signInWithPassword({
         email: user.email,
         password: user.password
@@ -55,7 +55,7 @@ describe('Supabase logic', () => {
       expect(unauthorizedResult.error).not.toBe(null);
     });
 
-    test.each([user1, user2])('Logs in successfully and creates virtual money account (card)', async user => {
+    test.each([user1, user2])('Logs in successfully and creates virtual money account (card)', async (user) => {
       const logInResult = await Supabase.auth.signInWithPassword({
         email: user.email,
         password: user.password
@@ -81,7 +81,7 @@ describe('Supabase logic', () => {
   });
 
   /* Remove created users */
- afterAll(async () => {
+  afterAll(async () => {
     const deleteResult1 = await SupabaseAdmin.auth.admin.deleteUser(createdUser1Id);
     expect(deleteResult1.error).toBe(null);
 

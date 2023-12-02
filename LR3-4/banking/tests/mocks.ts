@@ -1,6 +1,5 @@
 import { UserMetaData } from '@/core/types';
 
-
 type SignUpMetadata = Readonly<Omit<UserMetaData, 'id'>>;
 export const signUpMetadata1: Readonly<SignUpMetadata> = {
   first_name: 'Anthony',
@@ -32,13 +31,14 @@ export const user2 = {
   options: { data: signUpMetadata2 }
 } as const;
 
-export const getAccountData = (owner: string, name: string) => ({
+export const getAccountData = (owner: string, name: string) =>
+  ({
     amount: 1000,
     currency: 1,
     date_opened: new Date().toDateString(),
     name,
     owner
-} as const);
+  }) as const;
 
 export const invalidTransferAmounts = [-1000, 500000] as const;
 export const validTransferAmount = 500;
