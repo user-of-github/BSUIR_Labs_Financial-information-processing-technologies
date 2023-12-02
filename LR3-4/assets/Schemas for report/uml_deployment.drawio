@@ -1,0 +1,48 @@
+<mxfile host="app.diagrams.net" modified="2023-12-02T17:36:21.976Z" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/119.0.0.0 Safari/537.36 Edg/119.0.0.0" etag="xTi0jBiLw52Un7EoaFC7" version="22.1.5" type="device">
+  <diagram name="Page-1" id="DXRe8Hpu0EofH3TAX2yY">
+    <mxGraphModel dx="753" dy="419" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="850" pageHeight="1100" math="0" shadow="0">
+      <root>
+        <mxCell id="0" />
+        <mxCell id="1" parent="0" />
+        <mxCell id="BeQOWTP3dR6RiuOiHT3K-1" value="&amp;lt;&amp;lt;device&amp;gt;&amp;gt;&lt;br&gt;Vercel Web Server" style="verticalAlign=top;align=center;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=0;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="180" y="170" width="145" height="100" as="geometry" />
+        </mxCell>
+        <mxCell id="BeQOWTP3dR6RiuOiHT3K-2" value="&amp;lt;&amp;lt;device&amp;gt;&amp;gt;&lt;br&gt;User client (Mobile / Desktop)" style="verticalAlign=top;align=center;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=0;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="500" y="230" width="270" height="150" as="geometry" />
+        </mxCell>
+        <mxCell id="BeQOWTP3dR6RiuOiHT3K-3" value="&amp;lt;&amp;lt; device &amp;gt;&amp;gt;&lt;br&gt;Supabase Server" style="verticalAlign=top;align=center;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=0;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="500" y="70" width="195" height="120" as="geometry" />
+        </mxCell>
+        <mxCell id="BeQOWTP3dR6RiuOiHT3K-4" value="&amp;lt;&amp;lt; artifact &amp;gt;&amp;gt;&lt;br&gt;PostgreSQL DB" style="rounded=1;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="537.5" y="120" width="120" height="50" as="geometry" />
+        </mxCell>
+        <mxCell id="BeQOWTP3dR6RiuOiHT3K-5" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0;exitDx=40;exitDy=0;exitPerimeter=0;entryX=0;entryY=0;entryDx=65;entryDy=195;entryPerimeter=0;" edge="1" parent="1" source="BeQOWTP3dR6RiuOiHT3K-1" target="BeQOWTP3dR6RiuOiHT3K-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="190" as="sourcePoint" />
+            <mxPoint x="320" y="140" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BeQOWTP3dR6RiuOiHT3K-6" value="&amp;lt;&amp;lt;device&amp;gt;&amp;gt;&lt;br&gt;Web Browser" style="verticalAlign=top;align=center;spacingTop=8;spacingLeft=2;spacingRight=12;shape=cube;size=10;direction=south;fontStyle=0;html=1;whiteSpace=wrap;" vertex="1" parent="1">
+          <mxGeometry x="547.5" y="280" width="175" height="94" as="geometry" />
+        </mxCell>
+        <mxCell id="BeQOWTP3dR6RiuOiHT3K-7" value="&amp;lt;&amp;lt;artifact&amp;gt;&amp;gt;&lt;br&gt;HTML, JS" style="rounded=1;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="590" y="329" width="90" height="40" as="geometry" />
+        </mxCell>
+        <mxCell id="BeQOWTP3dR6RiuOiHT3K-8" value="" style="endArrow=none;html=1;rounded=0;exitX=0;exitY=0;exitDx=40;exitDy=0;exitPerimeter=0;entryX=0;entryY=0;entryDx=80;entryDy=270;entryPerimeter=0;" edge="1" parent="1" source="BeQOWTP3dR6RiuOiHT3K-1" target="BeQOWTP3dR6RiuOiHT3K-2">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="290" y="220" as="sourcePoint" />
+            <mxPoint x="380" y="145" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BeQOWTP3dR6RiuOiHT3K-9" value="HTTPS" style="edgeLabel;html=1;align=center;verticalAlign=middle;resizable=0;points=[];" vertex="1" connectable="0" parent="BeQOWTP3dR6RiuOiHT3K-8">
+          <mxGeometry x="-0.0692" y="-1" relative="1" as="geometry">
+            <mxPoint as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="BeQOWTP3dR6RiuOiHT3K-10" value="&amp;lt;&amp;lt; artifact &amp;gt;&amp;gt;&lt;br&gt;NodeJS" style="rounded=1;whiteSpace=wrap;html=1;align=center;" vertex="1" parent="1">
+          <mxGeometry x="207.5" y="220" width="90" height="40" as="geometry" />
+        </mxCell>
+      </root>
+    </mxGraphModel>
+  </diagram>
+</mxfile>
