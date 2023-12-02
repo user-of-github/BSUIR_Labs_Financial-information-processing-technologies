@@ -25,6 +25,10 @@ jobs:
         cd banking/
         npm install
     - name: Run tests
+      env:
+        DB_URL: ${{ secrets.DB_URL }}
+        DB_KEY: ${{ secrets.DB_KEY }}
+        DB_KEY_ADMIN: ${{ secrets.DB_KEY_ADMIN }}
       run: |
         cd LR3-4/
         cd banking/
