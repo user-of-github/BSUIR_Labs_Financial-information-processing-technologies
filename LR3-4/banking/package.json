@@ -9,7 +9,7 @@
     "lint": "next lint",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .prettierignore .",
-    "test": "jest --config=jest.config.local.js",
+    "test": "jest --config=jest.config.ci.js",
     "test:ci": "jest"
   },
   "dependencies": {
