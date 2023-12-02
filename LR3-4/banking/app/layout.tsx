@@ -1,9 +1,7 @@
 import { Inter } from 'next/font/google';
-
 import { HeadingElement, routes } from '@/app/constants';
 import { Navigation } from '@/components/Navigation';
 import type { Metadata } from 'next';
-
 import './globals.css';
 
 const inter = Inter({ subsets: ['cyrillic', 'latin'] });

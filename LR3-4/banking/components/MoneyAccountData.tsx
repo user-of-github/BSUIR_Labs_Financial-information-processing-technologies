@@ -2,7 +2,6 @@
 
 import { useState } from 'react';
 import { QRCode } from 'react-qrcode-logo';
-
 import { Button } from '@/components/UI/Button';
 import { MoneyAccount } from '@/core/types';
 

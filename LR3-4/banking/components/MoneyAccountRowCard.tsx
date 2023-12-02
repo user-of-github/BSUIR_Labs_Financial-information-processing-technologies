@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import { InfoBadge } from '@/components/UI/StateBadge';
 import { MoneyAccount } from '@/core/types';
 

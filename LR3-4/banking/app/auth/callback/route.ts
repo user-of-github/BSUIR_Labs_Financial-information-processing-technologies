@@ -1,6 +1,5 @@
 import { cookies } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
-
 import { createRouteHandlerClient } from '@supabase/auth-helpers-nextjs';
 
 export async function GET(req: NextRequest) {

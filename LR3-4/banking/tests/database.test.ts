@@ -1,5 +1,4 @@
 import { SupabaseClient, createClient } from '@supabase/supabase-js';
-
 import { getAccountData, user1, user2 } from './mocks';
 
 describe('Supabase logic', () => {
@@ -52,7 +51,7 @@ describe('Supabase logic', () => {
       expect(unauthorizedResult.error).not.toBe(null);
     });
 
-    test.each([user1, user2])('Logs in successfully and creates virtual money account (card)', async (user) => {
+    test.each([user1, user2])('Creates virtual money account (card)', async (user) => {
       const logInResult = await Supabase.auth.signInWithPassword({
         email: user.email,
         password: user.password

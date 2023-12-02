@@ -1,19 +1,15 @@
 'use client';
 
 import React from 'react';
-
 import Link from 'next/link';
 import { redirect, useRouter } from 'next/navigation';
-
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-
 import { Button } from '@/components/UI/Button';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { LoadingSpinner } from '@/components/UI/LoadingSpinner';
 import { ErrorBadge, InfoBadge } from '@/components/UI/StateBadge';
 import { emailValidator, inputFieldValidator, passportIdValidator, phoneValidator, validate } from '@/core/validators';
 import { createTransport } from 'nodemailer';
-
 import clsx from 'clsx';
 
 export default function SignUpPage(): JSX.Element {

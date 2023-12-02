@@ -1,12 +1,9 @@
 'use client';
 
 import React from 'react';
-
 import Link from 'next/link';
 import { useRouter } from 'next/navigation';
-
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-
 import { QrScannerComponent } from '@/components/QrScanner';
 import { Button } from '@/components/UI/Button';
 import { LabeledInput } from '@/components/UI/LabeledInput';
@@ -15,7 +12,6 @@ import { Select } from '@/components/UI/Select';
 import { ErrorBadge, SuccessBadge } from '@/components/UI/StateBadge';
 import { MoneyAccount } from '@/core/types';
 import { ConversionRules } from '@/core/utils';
-
 import clsx from 'clsx';
 
 interface PaymentFormProps {

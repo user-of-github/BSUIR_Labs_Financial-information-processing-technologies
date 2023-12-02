@@ -1,7 +1,6 @@
 'use client';
 
 import React from 'react';
-
 import { Button } from '@/components/UI/Button';
 import { ColoredHeading } from '@/components/UI/ColoredHeading';
 import { LabeledInput } from '@/components/UI/LabeledInput';

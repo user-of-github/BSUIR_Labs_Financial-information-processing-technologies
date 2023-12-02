@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import { Button } from '@/components/UI/Button';
 import { ColoredHeading } from '@/components/UI/ColoredHeading';
 

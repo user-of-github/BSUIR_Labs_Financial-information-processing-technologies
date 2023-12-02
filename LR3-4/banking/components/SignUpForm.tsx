@@ -1,14 +1,11 @@
 'use client';
 
 import React from 'react';
-
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-
 import { Button } from '@/components/UI/Button';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { ErrorBadge, SuccessBadge } from '@/components/UI/StateBadge';
 import { emailValidator, inputFieldValidator, passportIdValidator, phoneValidator, validate } from '@/core/validators';
-
 import clsx from 'clsx';
 
 export const SignUpForm = (): JSX.Element => {

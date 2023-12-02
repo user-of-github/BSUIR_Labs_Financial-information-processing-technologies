@@ -28,6 +28,7 @@
 ---
 
 ## Getting Started
+
 - **_! Minimum NodeJS version required -- NodeJS 18 !_**
 - `npm install`
 - _Set up ENV variables if necessary_

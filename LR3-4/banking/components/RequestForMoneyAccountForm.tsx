@@ -1,11 +1,8 @@
 'use client';
 
 import React from 'react';
-
 import { useRouter } from 'next/navigation';
-
 import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
-
 import { Button } from '@/components/UI/Button';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { LoadingSpinner } from '@/components/UI/LoadingSpinner';
@@ -13,7 +10,6 @@ import { Select } from '@/components/UI/Select';
 import { ErrorBadge, SuccessBadge } from '@/components/UI/StateBadge';
 import { Currency, UserMetaData } from '@/core/types';
 import { inputFieldValidator, validate } from '@/core/validators';
-
 import clsx from 'clsx';
 
 interface RequestForMoneyAccountFormProps {

@@ -1,6 +1,5 @@
 import { NextResponse } from 'next/server';
 import type { NextRequest } from 'next/server';
-
 import { createMiddlewareClient } from '@supabase/auth-helpers-nextjs';
 
 const PROTECTED_ROUTES = ['/account', '/payments', '/account/moneyAccounts', '/account/moneyAccounts/create'];

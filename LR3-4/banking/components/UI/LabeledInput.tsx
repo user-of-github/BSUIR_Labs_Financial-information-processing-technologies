@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { Input, SupportedInputValueType } from '@/components/UI/Input';
 
 type BaseInputProps<InputValueType extends SupportedInputValueType> = React.ComponentProps<typeof Input<InputValueType>>;

@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { ColoredHeading } from '@/components/UI/ColoredHeading';
 
 export default function CreditPageLayout({ children }: React.PropsWithChildren) {

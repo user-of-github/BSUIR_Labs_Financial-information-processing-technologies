@@ -1,5 +1,4 @@
 import React from 'react';
-
 import { ColoredHeading } from '@/components/UI/ColoredHeading';
 
 export const metadata = {

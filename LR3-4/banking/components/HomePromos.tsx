@@ -1,5 +1,4 @@
 import Link from 'next/link';
-
 import { PromoBlock } from '@/components/PromoBlock';
 
 export const HomePromos = (): JSX.Element => (

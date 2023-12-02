@@ -1,7 +1,5 @@
 import { cookies } from 'next/headers';
-
 import { createServerComponentClient } from '@supabase/auth-helpers-nextjs';
-
 import { CurrencyConverterForm } from '@/components/CurrencyConverterForm';
 import { CurrencyTariff, DBResponse } from '@/core/types';
 import { createCurrencyConversionMap } from '@/core/utils';

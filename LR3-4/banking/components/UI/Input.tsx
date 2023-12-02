@@ -1,5 +1,4 @@
 import { HTMLInputTypeAttribute } from 'react';
-
 import clsx from 'clsx';
 
 export type SupportedInputValueType = number | string;
