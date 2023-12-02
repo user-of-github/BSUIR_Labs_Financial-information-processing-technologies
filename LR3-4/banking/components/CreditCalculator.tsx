@@ -7,17 +7,18 @@ import { LabeledInput } from '@/components/UI/LabeledInput';
 import { RangeInput } from '@/components/UI/RangeInput';
 import { InfoBadge } from '@/components/UI/StateBadge';
 import { getMonthlyPayment } from '@/core/utils';
+import { useInputTypeNumber } from '@/components/hooks/useInputTypeNumber';
 
 interface CreditCalculatorProps {
   percent: number;
 }
 export const CreditCalculator = (props: CreditCalculatorProps) => {
-  const [creditSum, setCreditSum] = React.useState<number>(100);
+  const [creditSum, setCreditSum] = useInputTypeNumber(100);
   const [creditTerm, setCreditTerm] = React.useState<number>(1);
   const [monthlyPayment, setMonthlyPayment] = React.useState<number>(1);
 
   React.useEffect(() => {
-    const newMonthlyPayment = getMonthlyPayment(creditSum, creditTerm, props.percent);
+    const newMonthlyPayment = getMonthlyPayment(Number(creditSum), creditTerm, props.percent);
     setMonthlyPayment(newMonthlyPayment);
   }, [creditSum, creditTerm]);
 
@@ -28,7 +29,7 @@ export const CreditCalculator = (props: CreditCalculatorProps) => {
           label="Credit sum, BYN"
           onChange={setCreditSum}
           value={creditSum}
-          type="number"
+          type="text"
           min={1}
           max={100000}
           maxLength={10}

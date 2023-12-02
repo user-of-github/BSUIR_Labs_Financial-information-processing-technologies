@@ -4,6 +4,7 @@ import React from 'react';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { Select } from '@/components/UI/Select';
 import clsx from 'clsx';
+import { useInputTypeNumber } from '@/components/hooks/useInputTypeNumber';
 
 interface CurrencyConverterFormProps {
   conversionRatios: Map<string, Map<string, number>>;
@@ -14,12 +15,12 @@ export const CurrencyConverterForm = ({ conversionRatios, className }: CurrencyC
   const currenciesNames: string[] = Array.from(conversionRatios.keys());
   const [currencyFrom, setCurrencyFrom] = React.useState<string>(currenciesNames[0]);
   const [currencyTo, setCurrencyTo] = React.useState<string>(currenciesNames[0]);
-  const [currencyFromValue, setCurrencyFromValue] = React.useState<number>(1);
+  const [currencyFromValue, setCurrencyFromValue] = useInputTypeNumber(1);
   const [currencyToValue, setCurrencyToValue] = React.useState<number>(1);
 
   React.useEffect(() => {
     const ratio = conversionRatios.get(currencyFrom)?.get(currencyTo) || 0;
-    setCurrencyToValue(currencyFromValue * ratio);
+    setCurrencyToValue(Number(currencyFromValue) * ratio);
   }, [currencyFrom, currencyTo, currencyToValue, currencyFromValue]);
 
   return (
@@ -28,7 +29,7 @@ export const CurrencyConverterForm = ({ conversionRatios, className }: CurrencyC
         title="From"
         currenciesList={currenciesNames}
         onCurrencyNameChange={setCurrencyFrom}
-        onCurrencyValueChange={(value) => !Number.isNaN(value) && value >= 0 && setCurrencyFromValue(value)}
+        onCurrencyValueChange={setCurrencyFromValue}
         selected={currencyFrom}
         enteredValue={currencyFromValue}
       />
@@ -38,7 +39,7 @@ export const CurrencyConverterForm = ({ conversionRatios, className }: CurrencyC
         currenciesList={currenciesNames}
         onCurrencyNameChange={setCurrencyTo}
         selected={currencyTo}
-        enteredValue={currencyToValue}
+        enteredValue={currencyToValue.toFixed(2)}
         disabled
       />
     </div>
@@ -49,9 +50,9 @@ interface CurrencySelectionBlockProps {
   title: string;
   currenciesList: string[];
   selected: string;
-  enteredValue: number;
+  enteredValue: string;
   onCurrencyNameChange: (newCurrency: string) => void;
-  onCurrencyValueChange?: (newCurrency: number) => void;
+  onCurrencyValueChange?: (newCurrency: string) => void;
   disabled?: boolean;
 }
 
@@ -74,7 +75,7 @@ const CurrencySelectionBlock = ({
           </label>
           <Select selectedLabel={selected} values={currenciesList} onChange={onCurrencyNameChange} size={3} />
         </div>
-        <LabeledInput label="Value" type="number" value={enteredValue} disabled={disabled} onChange={onCurrencyValueChange} />
+        <LabeledInput label="Value" type="text" value={enteredValue} disabled={disabled} onChange={onCurrencyValueChange} />
       </div>
     </section>
   );

@@ -13,6 +13,7 @@ import { ErrorBadge, SuccessBadge } from '@/components/UI/StateBadge';
 import { MoneyAccount } from '@/core/types';
 import { ConversionRules } from '@/core/utils';
 import clsx from 'clsx';
+import { useInputTypeNumber } from '@/components/hooks/useInputTypeNumber';
 
 interface PaymentFormProps {
   availableAccounts: MoneyAccount[];
@@ -21,7 +22,7 @@ export const PaymentForm = (props: PaymentFormProps) => {
   const supabase = createClientComponentClient();
 
   const [receiversAccount, setReceiversAccount] = React.useState<string>('');
-  const [transferredSum, setTransferredSum] = React.useState<number>(0);
+  const [transferredSum, setTransferredSum] = useInputTypeNumber(0);
   const [selectedAccount, setSelectedAccount] = React.useState(props.availableAccounts[0].number);
   const [selectedAccountInfo, setSelectedAccountInfo] = React.useState<[string, string, string]>([
     props.availableAccounts[0].currency.code,
@@ -36,7 +37,8 @@ export const PaymentForm = (props: PaymentFormProps) => {
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const validate = () => {
-    if (transferredSum <= 0 || transferredSum > (Number(selectedAccountInfo[1]) || 0)) {
+    const asNumber = Number(transferredSum);
+    if (asNumber <= 0 || asNumber > (Number(selectedAccountInfo[1]) || 0)) {
       setError('Invalid transferred sum');
       return false;
     }
@@ -134,7 +136,7 @@ export const PaymentForm = (props: PaymentFormProps) => {
         onClick={toggleQrScannerShown}
       />
       {qrScannerShown && <QrScannerComponent onScan={onScanValues} onClose={() => setQrScannerShown(false)} />}
-      <LabeledInput label="Sum to transfer" type="number" onChange={setTransferredSum} value={transferredSum} required />
+      <LabeledInput label="Sum to transfer" type="text" onChange={setTransferredSum} value={transferredSum} required />
       <Button type="submit" text={loading ? <LoadingSpinner /> : 'Transfer money'} appearance="ordinary" disabled={loading} />
       {error && <ErrorBadge title="Transaction fail: " text={error} />}
     </form>

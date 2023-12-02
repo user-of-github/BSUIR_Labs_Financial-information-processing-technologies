@@ -16,7 +16,7 @@ export const HomePromos = (): JSX.Element => (
       <PromoBlock
         title="Opening a new money account"
         description="Create your first or additional bill in any currency you like"
-        backgroundImage="/assets/images/accounting.png"
+        backgroundImage="/assets/images/for-promo.png"
         color="rgb(251, 245, 255)"
       />
     </Link>

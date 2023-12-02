@@ -1,12 +1,11 @@
 import { HTMLInputTypeAttribute } from 'react';
 import clsx from 'clsx';
 
-export type SupportedInputValueType = number | string;
 
-interface InputProps<InputValueType extends SupportedInputValueType> {
+interface InputProps {
   type: HTMLInputTypeAttribute;
-  value: InputValueType;
-  onChange?: (newValue: InputValueType) => void;
+  value: string;
+  onChange?: (newValue: string) => void;
   placeholder?: string;
   className?: string;
   disabled?: boolean;
@@ -17,7 +16,7 @@ interface InputProps<InputValueType extends SupportedInputValueType> {
   max?: number;
 }
 
-export const Input = <InputValueType extends SupportedInputValueType>({
+export const Input = ({
   type,
   value,
   onChange,
@@ -29,7 +28,7 @@ export const Input = <InputValueType extends SupportedInputValueType>({
   pattern,
   min,
   max
-}: InputProps<InputValueType>): JSX.Element => {
+}: InputProps): JSX.Element => {
   return (
     <input
       type={type}
@@ -40,9 +39,7 @@ export const Input = <InputValueType extends SupportedInputValueType>({
       placeholder={placeholder}
       disabled={disabled}
       value={value}
-      onChange={(event) =>
-        onChange?.((type === 'number' ? Number(event.currentTarget.value) : event.currentTarget.value) as InputValueType)
-      }
+      onChange={(event) => onChange?.(event.currentTarget.value)}
       maxLength={maxLength}
       required={required}
       pattern={pattern}
