@@ -22,7 +22,7 @@
 - _Created similar to responsive layout, comfortable to use on the go_
 - _Deployed to Vercel_
 - _Set up prettier with formatting rules_
-- _Restrictions of access to table on level of Database (Supabase RLS)_  
+- _Restrictions of access to table on level of Database (Supabase RLS)_
 - _Tests of Supabase-JS functionality (RLS, procedures)_
 
 ---

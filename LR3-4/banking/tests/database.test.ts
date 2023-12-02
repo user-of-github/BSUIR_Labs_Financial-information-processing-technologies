@@ -3,11 +3,8 @@ import { SupabaseClient, createClient } from '@supabase/supabase-js';
 import { getAccountData, user1, user2 } from './mocks';
 
 describe('Supabase logic', () => {
-  let Supabase: SupabaseClient;
-  let SupabaseAdmin: SupabaseClient;
-
-  let createdUser1Id: string;
-  let createdUser2Id: string;
+  let Supabase: SupabaseClient, SupabaseAdmin: SupabaseClient;
+  let createdUser1Id: string, createdUser2Id: string;
 
   /*  Initialize Supabase Client, Register 2 new users, Save their id  */
   beforeAll(async () => {
