@@ -6,8 +6,8 @@ import { ColoredHeading } from '@/components/UI/ColoredHeading';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { RangeInput } from '@/components/UI/RangeInput';
 import { InfoBadge } from '@/components/UI/StateBadge';
-import { getMonthlyPayment } from '@/core/utils';
 import { useInputTypeNumber } from '@/components/hooks/useInputTypeNumber';
+import { getMonthlyPayment } from '@/core/utils';
 
 interface CreditCalculatorProps {
   percent: number;

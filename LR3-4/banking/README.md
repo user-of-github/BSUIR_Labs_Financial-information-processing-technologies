@@ -12,7 +12,10 @@
 - _[TypeScript](https://www.typescriptlang.org/)_
 - _[Supabase](https://supabase.com/)_
 - _[Tailwind CSS](https://tailwindcss.com/)_
-- _[Jest](https://jestjs.io/)_
+- _[Jest](https://jestjs.io/)_  
+  _And:_
+- _[GitHub Actions](https://github.com/features/actions)_
+- _[Vercel deploy](https://vercel.com/docs/deployments/overview)_
 
 ---
 
@@ -22,8 +25,9 @@
 - _Created similar to responsive layout, comfortable to use on the go_
 - _Deployed to Vercel_
 - _Set up prettier with formatting rules_
-- _Restrictions of access to table on level of Database (Supabase RLS)_
-- _Tests of Supabase-JS functionality (RLS, procedures)_
+- _Set up restrictions of access to table on level of Database (Supabase RLS)_
+- _Create tests of Supabase-JS functionality (RLS, procedures) and some core functions_
+- _GitHub Actions CI used for running tests on push_
 
 ---
 

@@ -4,13 +4,16 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
     "start": "next start",
     "lint": "next lint",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .prettierignore .",
     "test": "jest --config=jest.config.local.js",
-    "test:ci": "jest --config=jest.config.ci.js"
+    "test:ci": "jest --config=jest.config.ci.js",
+    "build": "next build",
+    "deploy:dev": "vercel",
+    "deploy:prod": "vercel --prod",
+    "deploy": "npm run build && npm run deploy:dev && npm run deploy:prod"
   },
   "dependencies": {
     "@authsignal/node": "^0.0.48",

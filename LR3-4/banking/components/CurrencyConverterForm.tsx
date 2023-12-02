@@ -3,8 +3,8 @@
 import React from 'react';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { Select } from '@/components/UI/Select';
-import clsx from 'clsx';
 import { useInputTypeNumber } from '@/components/hooks/useInputTypeNumber';
+import clsx from 'clsx';
 
 interface CurrencyConverterFormProps {
   conversionRatios: Map<string, Map<string, number>>;

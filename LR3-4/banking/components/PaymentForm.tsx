@@ -10,10 +10,10 @@ import { LabeledInput } from '@/components/UI/LabeledInput';
 import { LoadingSpinner } from '@/components/UI/LoadingSpinner';
 import { Select } from '@/components/UI/Select';
 import { ErrorBadge, SuccessBadge } from '@/components/UI/StateBadge';
+import { useInputTypeNumber } from '@/components/hooks/useInputTypeNumber';
 import { MoneyAccount } from '@/core/types';
 import { ConversionRules } from '@/core/utils';
 import clsx from 'clsx';
-import { useInputTypeNumber } from '@/components/hooks/useInputTypeNumber';
 
 interface PaymentFormProps {
   availableAccounts: MoneyAccount[];

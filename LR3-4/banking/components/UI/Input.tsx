@@ -1,7 +1,6 @@
 import { HTMLInputTypeAttribute } from 'react';
 import clsx from 'clsx';
 
-
 interface InputProps {
   type: HTMLInputTypeAttribute;
   value: string;

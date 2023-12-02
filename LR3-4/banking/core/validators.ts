@@ -81,7 +81,7 @@ export const phoneValidator: ValidatorFunction<string> = (val) => {
   }
 };
 
-export const numberValidator: ValidatorFunction<string | number> = val => {
+export const numberValidator: ValidatorFunction<string | number> = (val) => {
   if (Number.isNaN(Number(val))) {
     return { status: false, error: 'Not valid number provided' };
   }
