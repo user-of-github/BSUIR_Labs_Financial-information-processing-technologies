@@ -31,6 +31,7 @@
 
 - **_! Minimum NodeJS version required -- NodeJS 18 !_**
 - `npm install`
-- _Set up ENV variables if necessary_
+- _Set up ENV variables for Supabase connection in `.env.local`_
+- _Set up ENV variables for Jest tests `.jest/setEnvVars.js`_
 - `npm run dev`
 - _Open [http://localhost:3000](http://localhost:3000) with your browser to see the result._
