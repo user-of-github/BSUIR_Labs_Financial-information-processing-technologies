@@ -1,6 +1,5 @@
 import { SupabaseClient, createClient } from '@supabase/supabase-js';
-import { getAccountData, INITIAL_ACCOUNT_AMOUNT, invalidTransferAmounts, user1, user2, validTransferAmount } from './mocks';
-
+import { INITIAL_ACCOUNT_AMOUNT, getAccountData, invalidTransferAmounts, user1, user2, validTransferAmount } from './mocks';
 
 describe('Supabase logic', () => {
   let Supabase: SupabaseClient, SupabaseAdmin: SupabaseClient;

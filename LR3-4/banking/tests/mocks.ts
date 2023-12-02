@@ -47,13 +47,14 @@ export const user2: MockedUserData = {
 
 export const INITIAL_ACCOUNT_AMOUNT = 1000;
 
-export const getAccountData = (owner: string, name: string) => ({
+export const getAccountData = (owner: string, name: string) =>
+  ({
     amount: INITIAL_ACCOUNT_AMOUNT,
     currency: 1,
     date_opened: new Date().toDateString(),
     name,
     owner
-}) as const;
+  }) as const;
 
 export const invalidTransferAmounts = [-1000, 500000] as const;
 export const validTransferAmount = 500;

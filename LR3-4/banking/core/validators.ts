@@ -42,7 +42,7 @@ export const passportIdValidator: ValidatorFunction<string> = (val: string) => {
   }
 
   const number = value.slice(2);
-  if (![...number].every(num => DIGITS.includes(num) )) {
+  if (![...number].every((num) => DIGITS.includes(num))) {
     return { status: false, error: 'Passport ID must have a number after series, ex.: MP1234567' };
   }
 
