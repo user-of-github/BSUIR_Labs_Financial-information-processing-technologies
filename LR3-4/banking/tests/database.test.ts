@@ -1,9 +1,9 @@
 import { SupabaseClient, createClient } from '@supabase/supabase-js';
-import { getAccountData, user1, user2 } from './mocks';
+import { getAccountData, INITIAL_ACCOUNT_AMOUNT, invalidTransferAmounts, user1, user2, validTransferAmount } from './mocks';
+import { log } from 'util';
 
 describe('Supabase logic', () => {
   let Supabase: SupabaseClient, SupabaseAdmin: SupabaseClient;
-  let createdUser1Id: string, createdUser2Id: string;
 
   /*  Initialize Supabase Client, Register 2 new users, Save their id  */
   beforeAll(async () => {
@@ -14,13 +14,13 @@ describe('Supabase logic', () => {
     const signUpResponse2 = await Supabase.auth.signUp(user2);
 
     if (signUpResponse1.data.user) {
-      createdUser1Id = signUpResponse1.data.user.id;
-      console.log('Signed up a new user: ', createdUser1Id);
+      user1.id = signUpResponse1.data.user.id;
+      console.log('Signed up a new user: ', user1.id);
     }
 
     if (signUpResponse2.data.user) {
-      createdUser2Id = signUpResponse2.data.user.id;
-      console.log('Signed up a new user: ', createdUser2Id);
+      user2.id = signUpResponse2.data.user.id;
+      console.log('Signed up a new user: ', user2.id);
     }
   });
 
@@ -44,7 +44,7 @@ describe('Supabase logic', () => {
     });
   });
 
-  describe('Payments logic works correctly', () => {
+  describe('Money account creation & access works', () => {
     test('Unauthorized user can not create a new money account', async () => {
       const unauthorizedResult = await Supabase.from('BankAccounts').insert(getAccountData('84884', 'Not valid access'));
       expect(unauthorizedResult.data).toBe(null);
@@ -52,10 +52,7 @@ describe('Supabase logic', () => {
     });
 
     test.each([user1, user2])('Creates virtual money account (card)', async (user) => {
-      const logInResult = await Supabase.auth.signInWithPassword({
-        email: user.email,
-        password: user.password
-      });
+      const logInResult = await Supabase.auth.signInWithPassword({ email: user.email, password: user.password });
       expect(logInResult.error).toBe(null);
 
       // Currently there are no opened money accounts
@@ -70,18 +67,67 @@ describe('Supabase logic', () => {
       moneyAccounts = await Supabase.from('BankAccounts').select('*');
       expect(moneyAccounts.error).toBe(null);
       expect(moneyAccounts.data).toHaveLength(1);
+      user.createdAccountId = moneyAccounts.data![0]!.number;
 
       const logOutResult = await Supabase.auth.signOut();
       expect(logOutResult.error).toBe(null);
     });
   });
 
+  describe('Payments logic works correctly', () => {
+    test.each(invalidTransferAmounts)('Payment procedure throws error on invalid amounts', async (amount) => {
+      const logInResult = await Supabase.auth.signInWithPassword({ email: user1.email, password: user1.password });
+      expect(logInResult.error).toBe(null);
+
+      const transferResult = await Supabase.rpc('transfer_money', {
+        receiver_id: user2.createdAccountId,
+        sender_id: user1.createdAccountId,
+        transfer_amount: amount
+      });
+      expect(transferResult.error).not.toBe(null);
+
+      const logOutResult = await Supabase.auth.signOut();
+      expect(logOutResult.error).toBe(null);
+    });
+
+    test('Valid payment is processed', async () => {
+      let logInResult = await Supabase.auth.signInWithPassword({ email: user1.email, password: user1.password });
+      expect(logInResult.error).toBe(null);
+
+      const transferResult = await Supabase.rpc('transfer_money', {
+        receiver_id: user2.createdAccountId,
+        sender_id: user1.createdAccountId,
+        transfer_amount: validTransferAmount
+      });
+      expect(transferResult.error).toBe(null);
+
+      const sendersAccountResult = await Supabase.from('BankAccounts').select('*').eq('number', user1.createdAccountId);
+      expect(sendersAccountResult.error).toBe(null);
+      expect(sendersAccountResult.data).toHaveLength(1);
+      expect(sendersAccountResult.data![0].amount).toEqual(INITIAL_ACCOUNT_AMOUNT - validTransferAmount);
+
+      let logOutResult = await Supabase.auth.signOut();
+      expect(logOutResult.error).toBe(null);
+
+      logInResult = await Supabase.auth.signInWithPassword({ email: user2.email, password: user2.password });
+      expect(logInResult.error).toBe(null);
+
+      const receiversAccountResult = await Supabase.from('BankAccounts').select('*').eq('number', user2.createdAccountId);
+      expect(receiversAccountResult.error).toBe(null);
+      expect(receiversAccountResult.data).toHaveLength(1);
+      expect(receiversAccountResult.data![0].amount).toEqual(INITIAL_ACCOUNT_AMOUNT + validTransferAmount);
+
+      logOutResult = await Supabase.auth.signOut();
+      expect(logOutResult.error).toBe(null);
+    });
+  });
+
   /* Remove created users */
   afterAll(async () => {
-    const deleteResult1 = await SupabaseAdmin.auth.admin.deleteUser(createdUser1Id);
+    const deleteResult1 = await SupabaseAdmin.auth.admin.deleteUser(user1.id!);
     expect(deleteResult1.error).toBe(null);
 
-    const deleteResult2 = await SupabaseAdmin.auth.admin.deleteUser(createdUser2Id);
+    const deleteResult2 = await SupabaseAdmin.auth.admin.deleteUser(user2.id!);
     expect(deleteResult2.error).toBe(null);
   });
 });
