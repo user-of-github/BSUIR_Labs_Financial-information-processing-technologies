@@ -9,7 +9,8 @@
     "lint": "next lint",
     "format": "prettier --check --ignore-path .gitignore .",
     "format:fix": "prettier --write --ignore-path .prettierignore .",
-    "test": "jest"
+    "test": "jest --config=jest.config.local.js",
+    "test:ci": "jest"
   },
   "dependencies": {
     "@authsignal/node": "^0.0.48",
