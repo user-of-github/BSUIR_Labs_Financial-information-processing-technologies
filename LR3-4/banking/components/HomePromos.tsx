@@ -6,8 +6,8 @@ export const HomePromos = (): JSX.Element => (
     <PromoBlock
       isClickable={false}
       className="col-span-2"
-      title="Online Banking System"
-      description="This system was created during 'Financial processing technologies' at BSUIR by Slutski Mikita. The main stack includes NextJS and TypeScript. Welcome to online Banking system, which allows you to create bills, make loans, transfer money and exchange currency"
+      title="Online Banking System [Educational]"
+      description="Welcome to online Banking system, which allows you to create bills, make loans, transfer money and exchange currency. This system was created for 'Financial processing technologies' subject at BSUIR. The main stack includes NextJS, TypeScript and Supabase. "
       backgroundImage="/assets/images/debit-card.png"
       color="rgb(242, 247, 255)"
       titleClassName="mb-4 text-xl font-extrabold leading-none tracking-tight text-gray-900 md:text-3xl lg:text-4xl dark:text-white"

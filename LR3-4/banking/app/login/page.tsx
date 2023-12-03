@@ -7,7 +7,7 @@ import { createClientComponentClient } from '@supabase/auth-helpers-nextjs';
 import { Button } from '@/components/UI/Button';
 import { LabeledInput } from '@/components/UI/LabeledInput';
 import { LoadingSpinner } from '@/components/UI/LoadingSpinner';
-import { ErrorBadge, InfoBadge } from '@/components/UI/StateBadge';
+import { ErrorBadge, InfoBadge, SuccessBadge } from '@/components/UI/StateBadge';
 import { emailValidator, inputFieldValidator, passportIdValidator, phoneValidator, validate } from '@/core/validators';
 import { createTransport } from 'nodemailer';
 import clsx from 'clsx';
@@ -19,6 +19,7 @@ export default function SignUpPage(): JSX.Element {
   const [email, setEmail] = React.useState<string>('');
   const [password, setPassword] = React.useState<string>('');
   const [error, setError] = React.useState<string | undefined>(undefined);
+  const [success, setSuccess] = React.useState<boolean>(false);
   const [loading, setLoading] = React.useState<boolean>(false);
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
@@ -60,10 +61,17 @@ export default function SignUpPage(): JSX.Element {
     }
 
     if (data.user) {
+      setSuccess(true);
       router.refresh();
       router.push('/account');
     }
   };
+
+  if (success) {
+    return (
+      <SuccessBadge title="Success " text=" Authorized. Redirecting..."/>
+    );
+  }
 
   return (
     <>
