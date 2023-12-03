@@ -6,7 +6,7 @@ type MoneyAccountRowCardProps = Omit<MoneyAccount, 'owner'>;
 
 export const MoneyAccountRowCard = (props: MoneyAccountRowCardProps) => {
   return (
-    <div className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
+    <section className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
       <h5 className="mb-4 text-xl font-semibold tracking-tight text-gray-900 dark:text-white truncate">
         Money account <br /> {props.name && props.name}
         <br />
@@ -33,6 +33,6 @@ export const MoneyAccountRowCard = (props: MoneyAccountRowCardProps) => {
           />
         </svg>
       </Link>
-    </div>
+    </section>
   );
 };
