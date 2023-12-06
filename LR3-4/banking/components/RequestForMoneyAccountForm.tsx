@@ -54,6 +54,7 @@ export const RequestForMoneyAccountForm = (props: RequestForMoneyAccountFormProp
       setSuccess('Money account created. Redirecting to accounts list...');
       window.setTimeout(() => {
         router.push('/account/moneyAccounts');
+        router.refresh();
         setLoading(false);
       }, 4000);
     }
