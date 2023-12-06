@@ -26,7 +26,6 @@ export const RangeInput = (props: RangeInputProps): JSX.Element => {
 [&::-webkit-slider-thumb]:transition-all
 [&::-webkit-slider-thumb]:duration-150
 [&::-webkit-slider-thumb]:ease-in-out
-[&::-webkit-slider-thumb]:dark:bg-slate-700
 
 [&::-moz-range-thumb]:w-2.5
 [&::-moz-range-thumb]:h-2.5
@@ -43,7 +42,6 @@ export const RangeInput = (props: RangeInputProps): JSX.Element => {
 [&::-webkit-slider-runnable-track]:h-2
 [&::-webkit-slider-runnable-track]:bg-gray-100
 [&::-webkit-slider-runnable-track]:rounded-full
-[&::-webkit-slider-runnable-track]:dark:bg-gray-700
 
 [&::-moz-range-track]:w-full
 [&::-moz-range-track]:h-2

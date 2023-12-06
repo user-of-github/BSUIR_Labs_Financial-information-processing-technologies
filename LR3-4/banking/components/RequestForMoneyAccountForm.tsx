@@ -76,7 +76,7 @@ export const RequestForMoneyAccountForm = (props: RequestForMoneyAccountFormProp
       />
       <LabeledInput type="text" label="Passport id" disabled value={props.userData.passport_id} />
       <div className="flex flex-col">
-        <span className="mb-1 block text-sm font-medium text-gray-900 dark:text-white">Choose currency</span>
+        <span className="mb-1 block text-sm font-medium text-gray-900">Choose currency</span>
         <Select
           values={currencyNames}
           selectedLabel={currencyTitle}

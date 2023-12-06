@@ -9,7 +9,7 @@ interface LabeledInputProps extends BaseInputProps {
 export const LabeledInput = ({ label, ...baseProps }: LabeledInputProps): JSX.Element => {
   return (
     <div className="flex flex-col">
-      <label className="mb-1 block text-sm font-medium text-gray-900 dark:text-white">{label}</label>
+      <label className="mb-1 block text-sm font-medium text-gray-900">{label}</label>
       <Input {...baseProps} />
     </div>
   );

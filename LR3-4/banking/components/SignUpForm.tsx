@@ -74,10 +74,9 @@ export const SignUpForm = (): JSX.Element => {
 
   return (
     <form
-      className={clsx(
-        'mr-auto flex w-3/5 flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 max-md:w-full',
-        { 'opacity-30 pointer-events-none cursor-default': loading }
-      )}
+      className={clsx('mr-auto flex w-3/5 flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow max-md:w-full', {
+        'opacity-30 pointer-events-none cursor-default': loading
+      })}
       onSubmit={handleSubmit}
       autoComplete="on"
     >

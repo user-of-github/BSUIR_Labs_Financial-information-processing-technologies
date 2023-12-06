@@ -16,15 +16,15 @@ interface HeadingProps {
 const headings = {
   1: {
     element: (props: HeadingProps) => <h1 className={props.className}>{props.children}</h1>,
-    style: 'mb-4 text-2xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl'
+    style: 'mb-4 text-2xl font-extrabold text-gray-900 md:text-3xl lg:text-4xl'
   },
   2: {
     element: (props: HeadingProps) => <h2 className={props.className}>{props.children}</h2>,
-    style: 'mb-4 text-xl font-extrabold text-gray-900 dark:text-white md:text-2xl lg:text-3xl'
+    style: 'mb-4 text-xl font-extrabold text-gray-900 md:text-2xl lg:text-3xl'
   },
   3: {
     element: (props: HeadingProps) => <h3 className={props.className}>{props.children}</h3>,
-    style: 'mb-4 text-xl font-extrabold text-gray-900 dark:text-white md:text-xl lg:text-2xl'
+    style: 'mb-4 text-xl font-extrabold text-gray-900 md:text-xl lg:text-2xl'
   }
 };
 export const ColoredHeading = ({

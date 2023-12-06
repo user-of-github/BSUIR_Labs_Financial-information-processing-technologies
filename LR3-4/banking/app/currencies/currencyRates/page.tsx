@@ -12,13 +12,13 @@ export default async function CurrencyRates(): Promise<JSX.Element> {
 
   return (
     <>
-      <h1 className="mb-4 text-2xl font-extrabold text-gray-900 dark:text-white md:text-3xl lg:text-4xl">
+      <h1 className="mb-4 text-2xl font-extrabold text-gray-900 md:text-3xl lg:text-4xl">
         <span className="bg-gradient-to-r from-sky-400 to-emerald-600 bg-clip-text text-transparent">Currency Rates</span>
       </h1>
 
       <div className="max-w-[500px]">
-        <table className="w-full text-center text-sm text-gray-500 dark:text-gray-400">
-          <thead className="bg-gray-50 text-xs uppercase text-gray-700 dark:bg-gray-700 dark:text-gray-400">
+        <table className="w-full text-center text-sm text-gray-500">
+          <thead className="bg-gray-50 text-xs uppercase text-gray-700">
             <tr>
               <th></th>
               {data!.map((item) => (
@@ -29,8 +29,8 @@ export default async function CurrencyRates(): Promise<JSX.Element> {
             </tr>
           </thead>
           <tbody>
-            <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
-              <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+            <tr className="border-b bg-white">
+              <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-gray-900">
                 Bank sells
               </th>
               {data!.map((item) => (
@@ -39,8 +39,8 @@ export default async function CurrencyRates(): Promise<JSX.Element> {
                 </td>
               ))}
             </tr>
-            <tr className="border-b bg-white dark:border-gray-700 dark:bg-gray-800">
-              <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-gray-900 dark:text-white">
+            <tr className="border-b bg-white">
+              <th scope="row" className="whitespace-nowrap px-6 py-4 font-medium text-gray-900">
                 Bank buys
               </th>
               {data!.map((item) => (

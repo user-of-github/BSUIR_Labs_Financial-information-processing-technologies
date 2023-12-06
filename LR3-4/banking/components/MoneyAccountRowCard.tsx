@@ -6,13 +6,13 @@ type MoneyAccountRowCardProps = Omit<MoneyAccount, 'owner'>;
 
 export const MoneyAccountRowCard = (props: MoneyAccountRowCardProps) => {
   return (
-    <section className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow dark:bg-gray-800 dark:border-gray-700">
-      <h5 className="mb-4 text-xl font-semibold tracking-tight text-gray-900 dark:text-white truncate">
+    <section className="w-full p-6 bg-white border border-gray-200 rounded-lg shadow">
+      <h5 className="mb-4 text-xl font-semibold tracking-tight text-gray-900 truncate">
         Money account <br /> {props.name && props.name}
         <br />
         {props.number.slice(0, 10) + new Array(props.number.length - 10).fill('*').join('') + props.number.slice(20)}
       </h5>
-      <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">
+      <p className="mb-3 font-normal text-gray-500">
         <InfoBadge title={props.currency.code} className="mr-auto w-fit max-w-[100px]" />
       </p>
       <Link href={`/account/moneyAccounts/${props.number}`} className="inline-flex items-center text-blue-600 hover:underline">

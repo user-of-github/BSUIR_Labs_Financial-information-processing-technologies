@@ -68,16 +68,14 @@ export default function SignUpPage(): JSX.Element {
   };
 
   if (success) {
-    return (
-      <SuccessBadge title="Success " text=" Authorized. Redirecting..."/>
-    );
+    return <SuccessBadge title="Success " text=" Authorized. Redirecting..." />;
   }
 
   return (
     <>
       <form
         className={clsx(
-          'relative mr-auto flex w-3/5 flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow dark:border-gray-700 dark:bg-gray-800 max-md:w-full',
+          'relative mr-auto flex w-3/5 flex-col gap-y-4 rounded-lg border border-gray-200 bg-white p-6 shadow max-md:w-full',
           { 'opacity-30 pointer-events-none cursor-default': loading }
         )}
         onSubmit={handleSubmit}
@@ -99,9 +97,9 @@ export default function SignUpPage(): JSX.Element {
           {loading && <LoadingSpinner />}
         </div>
       </form>
-      <small className="mt-4 text-sm font-semibold text-blue-600/50 dark:text-blue-500/50">
+      <small className="mt-4 text-sm font-semibold text-blue-600/50">
         Not an existing client ?{' '}
-        <Link href="/signUp" className="text-blue-600/100 dark:text-blue-500/100">
+        <Link href="/signUp" className="text-blue-600/100">
           Create your bank account !
         </Link>
       </small>
