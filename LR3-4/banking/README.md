@@ -4,7 +4,7 @@
 
 #### _Created by [@user-of-github](github.com/user-of-github)_
 
----
+---  
 
 ## Technologies stack:
 
@@ -15,8 +15,9 @@
 - _[Jest](https://jestjs.io/)_  
   _And:_
 - _[GitHub Actions](https://github.com/features/actions)_
-- _[Vercel deploy](https://vercel.com/docs/deployments/overview)_
+- _[Vercel deploy](https://vercel.com/docs/deployments/overview)_  
 
+[![Made with Supabase](https://supabase.com/badge-made-with-supabase.svg)](https://supabase.com)  
 ---
 
 ## Some other interesting features:
